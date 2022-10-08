@@ -18,10 +18,10 @@ import '../Model/restorentmodel.dart';
 class Hotelprovider extends ChangeNotifier {
   Category? category;
 
-  Future getcategory() async {
-    category = await HttpCategory().getcategory();
-    notifyListeners();
-  }
+  // Future getcategory() async {
+  //   category = await HttpCategory().getcategory();
+  //   notifyListeners();
+  // }
 
   // offer banner
 

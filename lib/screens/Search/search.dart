@@ -481,8 +481,7 @@ class _SearchScreenState extends State<SearchScreen> {
           return InkWell(
             onTap: () {
               newpage(
-                  HoteldetailsPage2(hotelid: data.hotelInfo!.id!, data: data),
-                  context);
+                  HoteldetailsPage2(hotelid: data!.id!, data: data), context);
             },
             child: Container(
               height: 144.h,
@@ -500,7 +499,8 @@ class _SearchScreenState extends State<SearchScreen> {
                       height: 144.h,
                       width: 105.w,
                       child: Image.network(
-                        data.hotelInfo!.hotelImages!,
+                        "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8aG90ZWx8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60",
+                        // data!.hotelImages!,
                         fit: BoxFit.cover,
                       )),
                   SizedBox(width: 10.w),
@@ -510,7 +510,7 @@ class _SearchScreenState extends State<SearchScreen> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          data.hotelInfo!.hotelName!,
+                          data!.name!,
                           style: TextStyle(
                               fontSize: 18.sp, fontWeight: FontWeight.w500),
                         ),
@@ -528,7 +528,7 @@ class _SearchScreenState extends State<SearchScreen> {
                           ],
                         ),
                         SizedBox(height: 8.h),
-                        Text(data.hotelInfo!.hotelTags!),
+                        Text(data.hotelTags[0].name),
                         SizedBox(height: 20.h),
                         RatingBar.builder(
                           itemSize: 20.r,
@@ -545,7 +545,7 @@ class _SearchScreenState extends State<SearchScreen> {
                           },
                         ),
                         Text(
-                          "${data.ratingInfo!.length} review",
+                          "${data.hotelRatings.length} review",
                           style: TextStyle(
                               fontSize: 11.sp, fontWeight: FontWeight.w200),
                         )
@@ -571,7 +571,7 @@ class _SearchScreenState extends State<SearchScreen> {
                                 top: 10.h,
                                 right: 0.w,
                                 child: Text(
-                                  "${data.hotelInfo!.hotelDiscount}%",
+                                  "${data.discount}%",
                                   style: TextStyle(
                                     fontSize: 13.sp,
                                     fontWeight: FontWeight.w700,
@@ -597,14 +597,14 @@ class _SearchScreenState extends State<SearchScreen> {
                               ),
                             ),
                             Text(
-                              "${data.hotelInfo!.hotelOfferPrice} tk",
+                              "${data.offerPrice} tk",
                               style: TextStyle(
                                   fontSize: 15.sp,
                                   fontWeight: FontWeight.w700,
                                   color: Color(0xff08BA64)),
                             ),
                             Text(
-                              "${data.hotelInfo!.hotelPrice} tk",
+                              "${data.price} tk",
                               style: TextStyle(
                                   fontSize: 11.sp,
                                   fontWeight: FontWeight.w300,

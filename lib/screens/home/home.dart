@@ -33,7 +33,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Future loaddata() async {
     final provider = Provider.of<Hotelprovider>(context, listen: false);
-    await provider.getcategory();
+    // await provider.getcategory();
     await provider.getofferbanner();
     await provider.gethotels();
     await provider.getprofile();
@@ -405,9 +405,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 children: [
                   InkWell(
                     onTap: () {
-                      newpage(
-                          HoteldetailsPage2(
-                              hotelid: data.hotelInfo!.id!, data: data),
+                      newpage(HoteldetailsPage2(hotelid: data!.id!, data: data),
                           context);
                     },
                     child: Container(
@@ -428,7 +426,8 @@ class _HomeScreenState extends State<HomeScreen> {
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(10.r),
                                 child: Image.network(
-                                  data.hotelInfo!.hotelImages!,
+                                  "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8aG90ZWx8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60",
+                                  // data.hotelImages!,
                                   fit: BoxFit.cover,
                                 ),
                               )),
@@ -439,7 +438,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Text(
-                                  data.hotelInfo!.hotelName!,
+                                  data!.name!,
                                   style: TextStyle(
                                       fontSize: 18.sp,
                                       fontWeight: FontWeight.w500),
@@ -458,7 +457,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   ],
                                 ),
                                 SizedBox(height: 8.h),
-                                Text(data.hotelInfo!.hotelTags!),
+                                Text(data.hotelTags[0].name),
                                 SizedBox(height: 20.h),
                                 RatingBar.builder(
                                   itemSize: 20.r,
@@ -476,7 +475,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   },
                                 ),
                                 Text(
-                                  "${data.ratingInfo!.length} review",
+                                  "${data.hotelRatings.length} review",
                                   style: TextStyle(
                                       fontSize: 11.sp,
                                       fontWeight: FontWeight.w200),
@@ -503,7 +502,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                         top: 10.h,
                                         right: 0.w,
                                         child: Text(
-                                          "${data.hotelInfo!.hotelDiscount}%",
+                                          "${data.discount}%",
                                           style: TextStyle(
                                             fontSize: 13.sp,
                                             fontWeight: FontWeight.w700,
@@ -529,14 +528,14 @@ class _HomeScreenState extends State<HomeScreen> {
                                       ),
                                     ),
                                     Text(
-                                      "${data.hotelInfo!.hotelOfferPrice} tk",
+                                      "${data.offerPrice} tk",
                                       style: TextStyle(
                                           fontSize: 15.sp,
                                           fontWeight: FontWeight.w700,
                                           color: Color(0xff08BA64)),
                                     ),
                                     Text(
-                                      "${data.hotelInfo!.hotelPrice} tk",
+                                      "${data.price} tk",
                                       style: TextStyle(
                                           fontSize: 11.sp,
                                           fontWeight: FontWeight.w300,

@@ -43,8 +43,8 @@ class _HoteldetailsPage2State extends State<HoteldetailsPage2> {
     _locationprovider.calculateDistance(
       lat2: _locationprovider.currentlocationData!.latitude,
       lon2: _locationprovider.currentlocationData!.longitude,
-      lat1: double.parse(widget.data.hotelInfo!.hotelLatitude!),
-      lon1: double.parse(widget.data.hotelInfo!.hotelLongitude!),
+      lat1: double.parse(widget.data.latitude!),
+      lon1: double.parse(widget.data.longitude),
     );
   }
 
@@ -206,7 +206,7 @@ class _HoteldetailsPage2State extends State<HoteldetailsPage2> {
                             ),
                             SizedBox(width: 10.h),
                             Text(
-                              "${widget.data.ratingInfo!.length}",
+                              "${widget.data.hotelRatings.length}",
                               style: TextStyle(
                                   fontSize: 18.sp,
                                   fontWeight: FontWeight.w500,
@@ -238,7 +238,7 @@ class _HoteldetailsPage2State extends State<HoteldetailsPage2> {
                         ),
                         SizedBox(height: 16.h),
                         Text(
-                          widget.data.hotelInfo!.hotelName!,
+                          widget.data.name!,
                           style: TextStyle(
                               fontSize: 24.sp,
                               fontWeight: FontWeight.w500,
@@ -252,7 +252,7 @@ class _HoteldetailsPage2State extends State<HoteldetailsPage2> {
                               size: 15,
                             ),
                             Text(
-                              widget.data.hotelInfo!.hotelLocation!,
+                              widget.data.location,
                               style: TextStyle(
                                   fontSize: 12.sp,
                                   color: Colors.grey,
@@ -262,7 +262,7 @@ class _HoteldetailsPage2State extends State<HoteldetailsPage2> {
                         ),
                         SizedBox(height: 20.h),
                         Text(
-                          widget.data.hotelInfo!.hotelDescription!,
+                          widget.data.description,
                           style: TextStyle(
                               fontSize: 14.sp,
                               fontWeight: FontWeight.w400,
