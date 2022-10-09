@@ -10,9 +10,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:travel_app_master/screens/Search/searchhotel.dart';
 
-import '../../Model/dblocation.dart';
-import '../../provider/Location/location.dart';
-import '../../provider/hotel.dart';
 import '../../utilites/route.dart';
 import '../restaurant _details/hoteldetails.dart';
 import 'datepicker.dart';
@@ -31,8 +28,8 @@ class _SearchScreenState extends State<SearchScreen> {
   bool isTap = false;
   TextEditingController _dobController = TextEditingController();
   final formkey = GlobalKey<FormState>();
-  Locationprovider? _locationprovider;
-  bool loading = true;
+  // Locationprovider? _locationprovider;
+  bool loading = false;
   int searhchotel = 0;
   String? areaselect;
 
@@ -42,20 +39,20 @@ class _SearchScreenState extends State<SearchScreen> {
   //   await _locationprovider!.getcurrectlocation();
   // }
 
-  Future loadalldata() async {
-    final provider = Provider.of<Hotelprovider>(context, listen: false);
-    await provider.getdblocation();
-    await provider.getrestorent();
-    setState(() {
-      loading = false;
-    });
-  }
+  // Future loadalldata() async {
+  //   final provider = Provider.of<Hotelprovider>(context, listen: false);
+  //   await provider.getdblocation();
+  //   await provider.getrestorent();
+  //   setState(() {
+  //     loading = false;
+  //   });
+  // }
 
-  @override
-  void initState() {
-    loadalldata();
-    super.initState();
-  }
+  // @override
+  // void initState() {
+  //   loadalldata();
+  //   super.initState();
+  // }
 
   @override
   void dispose() {
@@ -76,7 +73,7 @@ class _SearchScreenState extends State<SearchScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final provider = Provider.of<Hotelprovider>(context);
+    // final provider = Provider.of<Hotelprovider>(context);
     return Scaffold(
       body: loading
           ? Center(
@@ -235,14 +232,14 @@ class _SearchScreenState extends State<SearchScreen> {
                                     ),
                                     InkWell(
                                       onTap: () {
-                                        if (formkey.currentState!.validate()) {
-                                          formkey.currentState!.save();
-                                          setState(() {
-                                            searhchotel = 4;
-                                            provider.hotelsearch(
-                                                area: areaselect);
-                                          });
-                                        }
+                                        // if (formkey.currentState!.validate()) {
+                                        //   formkey.currentState!.save();
+                                        //   setState(() {
+                                        //     searhchotel = 4;
+                                        //     provider.hotelsearch(
+                                        //         area: areaselect);
+                                        //   });
+                                        // }
                                       },
                                       child: Container(
                                         width: 48.h,
@@ -339,14 +336,14 @@ class _SearchScreenState extends State<SearchScreen> {
   }
 
   Widget category() {
-    final provider = Provider.of<Hotelprovider>(context);
+    // final provider = Provider.of<Hotelprovider>(context);
     return Container(
       height: 40,
       child: ListView.separated(
         scrollDirection: Axis.horizontal,
-        itemCount: provider.category!.data!.length,
+        itemCount: 5,
         itemBuilder: (BuildContext context, int index) {
-          var data = provider.category!.data![index];
+          // var data = provider.category!.data![index];
           return InkWell(
             onTap: () {
               setState(() {
@@ -366,11 +363,12 @@ class _SearchScreenState extends State<SearchScreen> {
                     decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(16.r)),
-                    child: Image.network(data.categoryIcon!),
+                    child: Image.network(
+                        "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"),
                   ),
                   SizedBox(height: 5.h),
                   Text(
-                    data.categoryTitle!,
+                    "categoryTitle!",
                     style: TextStyle(
                         color: Color(0xFf9C9C9C),
                         fontSize: 13.sp,
@@ -471,16 +469,16 @@ class _SearchScreenState extends State<SearchScreen> {
   // }
 
   Widget hotels() {
-    final provider = Provider.of<Hotelprovider>(context);
+    // final provider = Provider.of<Hotelprovider>(context);
     return ListView.builder(
         shrinkWrap: true,
         physics: NeverScrollableScrollPhysics(),
-        itemCount: provider.hotels!.data.length,
+        itemCount: 5,
         itemBuilder: ((context, index) {
-          var data = provider.hotels!.data[index];
+          // var data = provider.hotels!.data[index];
           return InkWell(
             onTap: () {
-              newpage(HoteldetailsPage2(hotelid: data.id, data: data), context);
+              // newpage(HoteldetailsPage2(hotelid: data.id, data: data), context);
             },
             child: Container(
               height: 144.h,
@@ -509,7 +507,7 @@ class _SearchScreenState extends State<SearchScreen> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          data.name,
+                          "data.name",
                           style: TextStyle(
                               fontSize: 18.sp, fontWeight: FontWeight.w500),
                         ),
@@ -527,7 +525,7 @@ class _SearchScreenState extends State<SearchScreen> {
                           ],
                         ),
                         SizedBox(height: 8.h),
-                        Text(data.hotelTags[0].name),
+                        Text("data.hotelTags[0].name"),
                         SizedBox(height: 20.h),
                         RatingBar.builder(
                           itemSize: 20.r,
@@ -544,7 +542,7 @@ class _SearchScreenState extends State<SearchScreen> {
                           },
                         ),
                         Text(
-                          "${data.hotelRatings.length} review",
+                          "data.hotelRatings.length review",
                           style: TextStyle(
                               fontSize: 11.sp, fontWeight: FontWeight.w200),
                         )
@@ -570,7 +568,7 @@ class _SearchScreenState extends State<SearchScreen> {
                                 top: 10.h,
                                 right: 0.w,
                                 child: Text(
-                                  "${data.discount}%",
+                                  "data.discount%",
                                   style: TextStyle(
                                     fontSize: 13.sp,
                                     fontWeight: FontWeight.w700,
@@ -596,14 +594,14 @@ class _SearchScreenState extends State<SearchScreen> {
                               ),
                             ),
                             Text(
-                              "${data.offerPrice} tk",
+                              "data.offerPrice tk",
                               style: TextStyle(
                                   fontSize: 15.sp,
                                   fontWeight: FontWeight.w700,
                                   color: Color(0xff08BA64)),
                             ),
                             Text(
-                              "${data.price} tk",
+                              "data.price tk",
                               style: TextStyle(
                                   fontSize: 11.sp,
                                   fontWeight: FontWeight.w300,
@@ -623,16 +621,16 @@ class _SearchScreenState extends State<SearchScreen> {
   }
 
   Widget restorent() {
-    final provider = Provider.of<Hotelprovider>(context);
+    // final provider = Provider.of<Hotelprovider>(context);
     return ListView.builder(
         shrinkWrap: true,
         physics: NeverScrollableScrollPhysics(),
-        itemCount: provider.restorent!.data!.length,
+        itemCount: 4,
         itemBuilder: ((context, index) {
-          var data = provider.restorent!.data![index];
+          // var data = provider.restorent!.data![index];
           return InkWell(
             onTap: () {
-              // newpage(HoteldetailsPage2(hotelid: data.id!), context);
+              newpage(HoteldetailsPage2(), context);
             },
             child: Container(
               height: 144.h,
@@ -650,7 +648,7 @@ class _SearchScreenState extends State<SearchScreen> {
                       height: 144.h,
                       width: 105.w,
                       child: Image.network(
-                        data.restaurantImages!,
+                        "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
                         fit: BoxFit.cover,
                       )),
                   SizedBox(width: 10.w),
@@ -660,7 +658,7 @@ class _SearchScreenState extends State<SearchScreen> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          data.restaurantName!,
+                          "restaurantName",
                           style: TextStyle(
                               fontSize: 18.sp, fontWeight: FontWeight.w500),
                         ),
@@ -678,7 +676,7 @@ class _SearchScreenState extends State<SearchScreen> {
                           ],
                         ),
                         SizedBox(height: 8.h),
-                        Text(data.restaurantTags!),
+                        Text("data.restaurantTags!"),
                         SizedBox(height: 20.h),
                         RatingBar.builder(
                           itemSize: 20.r,
@@ -721,7 +719,7 @@ class _SearchScreenState extends State<SearchScreen> {
                                 top: 10.h,
                                 right: 0.w,
                                 child: Text(
-                                  "${data.restaurantDiscount}%",
+                                  "10%",
                                   style: TextStyle(
                                     fontSize: 13.sp,
                                     fontWeight: FontWeight.w700,
@@ -747,14 +745,14 @@ class _SearchScreenState extends State<SearchScreen> {
                               ),
                             ),
                             Text(
-                              "${""} tk",
+                              "${"500"} tk",
                               style: TextStyle(
                                   fontSize: 15.sp,
                                   fontWeight: FontWeight.w700,
                                   color: Color(0xff08BA64)),
                             ),
                             Text(
-                              "${""} tk",
+                              "${"700"} tk",
                               style: TextStyle(
                                   fontSize: 11.sp,
                                   fontWeight: FontWeight.w300,

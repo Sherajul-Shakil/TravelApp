@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
-import '../../provider/Location/location.dart';
-
 class Dropdownlocation extends StatefulWidget {
   final Function onpresed;
   const Dropdownlocation({Key? key, required this.onpresed}) : super(key: key);
@@ -15,25 +13,25 @@ class Dropdownlocation extends StatefulWidget {
 class _DropdownlocationState extends State<Dropdownlocation> {
   bool loading = true;
 
-  Future loaddata() async {
-    final _locationprovider =
-        Provider.of<Locationprovider>(context, listen: false);
-    await _locationprovider.locationenablecheck();
-    await _locationprovider.getcurrectlocation();
-    setState(() {
-      loading = false;
-    });
-  }
+  // Future loaddata() async {
+  //   final _locationprovider =
+  //       Provider.of<Locationprovider>(context, listen: false);
+  //   await _locationprovider.locationenablecheck();
+  //   await _locationprovider.getcurrectlocation();
+  //   setState(() {
+  //     loading = false;
+  //   });
+  // }
 
-  @override
-  void initState() {
-    loaddata();
-    super.initState();
-  }
+  // @override
+  // void initState() {
+  //   loaddata();
+  //   super.initState();
+  // }
 
   @override
   Widget build(BuildContext context) {
-    final currentlocation = Provider.of<Locationprovider>(context);
+    // final currentlocation = Provider.of<Locationprovider>(context);
     return loading
         ? Center(
             child: CircularProgressIndicator(),
@@ -58,13 +56,13 @@ class _DropdownlocationState extends State<Dropdownlocation> {
                   ListView.builder(
                       shrinkWrap: true,
                       physics: NeverScrollableScrollPhysics(),
-                      itemCount: currentlocation.nearbylocation!.place.length,
+                      itemCount: 5,
                       itemBuilder: ((context, index) {
-                        var data = currentlocation.nearbylocation!.place[index];
+                        // var data = currentlocation.nearbylocation!.place[index];
                         return InkWell(
                           onTap: () {
-                            widget.onpresed(data.area);
-                            Navigator.pop(context);
+                            // widget.onpresed(data.area);
+                            // Navigator.pop(context);
                           },
                           child: Container(
                             height: 150.h,
@@ -97,14 +95,14 @@ class _DropdownlocationState extends State<Dropdownlocation> {
                                         CrossAxisAlignment.start,
                                     children: [
                                       Text(
-                                        data.name,
+                                        "data.name",
                                         style: TextStyle(
                                             fontSize: 22.sp,
                                             color: Colors.white,
                                             fontWeight: FontWeight.bold),
                                       ),
                                       Text(
-                                        data.address,
+                                        "data.address",
                                         style: TextStyle(
                                           fontSize: 18.sp,
                                           color: Colors.white,
@@ -113,7 +111,7 @@ class _DropdownlocationState extends State<Dropdownlocation> {
                                       Row(
                                         children: [
                                           Text(
-                                            data.city,
+                                            "data.city",
                                             style: TextStyle(
                                               fontSize: 18.sp,
                                               color: Colors.white,
@@ -127,7 +125,7 @@ class _DropdownlocationState extends State<Dropdownlocation> {
                                             ),
                                           ),
                                           Text(
-                                            data.area,
+                                            "data.area",
                                             style: TextStyle(
                                               fontSize: 18.sp,
                                               color: Colors.white,

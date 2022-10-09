@@ -3,8 +3,6 @@ import 'package:provider/provider.dart';
 import 'package:travel_app_master/screens/restaurant%20_details/offer/offer_page.dart';
 import 'package:travel_app_master/screens/user_about/person.dart';
 
-import '../provider/Location/location.dart';
-import '../provider/pagecontroll.dart';
 import 'Search/search.dart';
 import 'home/home.dart';
 
@@ -33,28 +31,28 @@ class _NavigationScreenState extends State<NavigationScreen> {
   //   PersonScreen()
   // ];
 
-  Future currentlocationget() async {
-    final _locationprovider =
-        Provider.of<Locationprovider>(context, listen: false);
-    await _locationprovider.locationenablecheck();
-    await _locationprovider.getcurrectlocation();
-  }
+  // Future currentlocationget() async {
+  //   final _locationprovider =
+  //       Provider.of<Locationprovider>(context, listen: false);
+  //   await _locationprovider.locationenablecheck();
+  //   await _locationprovider.getcurrectlocation();
+  // }
 
-  @override
-  void initState() {
-    currentlocationget();
-    super.initState();
-  }
+  // @override
+  // void initState() {
+  //   currentlocationget();
+  //   super.initState();
+  // }
 
   @override
   Widget build(BuildContext context) {
-    final pageprovider = Provider.of<PagecontrollProvider>(context);
+    // final pageprovider = Provider.of<PagecontrollProvider>(context);
     return Scaffold(
       body: PageView(
-        controller: pageprovider.pageController,
+        controller: pageController,
         children: [
           HomeScreen(),
-          SearchScreen(selectedcategory: pageprovider.selectcategoryindex),
+          SearchScreen(selectedcategory: 1),
           OfferScreen(),
           // ProfileScreen(),
           Container(),
@@ -101,13 +99,22 @@ class _NavigationScreenState extends State<NavigationScreen> {
           backgroundColor: Colors.white,
           selectedItemColor: Colors.green,
           unselectedItemColor: Colors.black,
+          onTap: (index) {
+            setState(() {
+              selectedIndex = index;
+            });
+            pageController.jumpToPage(index);
+          },
           // selectedIconTheme: IconThemeData(
           //   color: Colors.redAccent
           // ),
 
-          onTap: (int index) {
-            pageprovider.pageController.jumpToPage(index);
-          },
+          // onTap: (int index) {
+          //   setState(() {
+          //     selectedIndex = index;
+          //   });
+          //   // pageprovider.pageController.jumpToPage(index);
+          // },
         ),
       ),
     );

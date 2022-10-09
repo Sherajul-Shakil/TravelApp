@@ -2,14 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
-import '../../../Model/hotelroom.dart';
-import '../../../provider/Location/location.dart';
-
 class GrabOffer extends StatefulWidget {
-  final HotelroomDatum data;
+  // final HotelroomDatum data;
   const GrabOffer({
     Key? key,
-    required this.data,
+    // required this.data,
   }) : super(key: key);
 
   @override
@@ -21,7 +18,7 @@ class _GrabOfferState extends State<GrabOffer> {
 
   @override
   Widget build(BuildContext context) {
-    final locationprovider = Provider.of<Locationprovider>(context);
+    // final locationprovider = Provider.of<Locationprovider>(context);
     return SingleChildScrollView(
       child: Container(
         decoration: BoxDecoration(color: Color(0xFfF7F7F7)),
@@ -70,7 +67,7 @@ class _GrabOfferState extends State<GrabOffer> {
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
                             Text(
-                              widget.data.hotelInfo!.roomTitle!,
+                              "widget.roomTitle!",
                               style: TextStyle(
                                   fontSize: 18.sp,
                                   color: Colors.black,
@@ -115,7 +112,7 @@ class _GrabOfferState extends State<GrabOffer> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  "${widget.data.hotelInfo!.roomDiscountPrice} tk",
+                                  "DiscountPrice tk",
                                   style: TextStyle(
                                       decoration: TextDecoration.lineThrough,
                                       fontWeight: FontWeight.w300,
@@ -125,7 +122,7 @@ class _GrabOfferState extends State<GrabOffer> {
                                 Row(
                                   children: [
                                     Text(
-                                      "${widget.data.hotelInfo!.roomPrice} tk",
+                                      "roomPrice tk",
                                       style: TextStyle(
                                           fontSize: 18.sp,
                                           fontWeight: FontWeight.w700,
@@ -135,7 +132,7 @@ class _GrabOfferState extends State<GrabOffer> {
                                       width: 10,
                                     ),
                                     Text(
-                                      "${widget.data.hotelInfo!.roomDiscount}% off",
+                                      "10% off",
                                       style: TextStyle(
                                           fontSize: 16.sp,
                                           fontWeight: FontWeight.w500,
@@ -154,7 +151,7 @@ class _GrabOfferState extends State<GrabOffer> {
                     height: 20,
                   ),
                   Text(
-                    widget.data.hotelInfo!.roomDescription!,
+                    "roomDescription",
                     style: TextStyle(
                         fontSize: 14.sp,
                         color: Colors.grey,
@@ -335,22 +332,22 @@ class _GrabOfferState extends State<GrabOffer> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      if (locationprovider.distance >= 1.0)
-                        Container(
-                          height: 62.h,
-                          width: 170.w,
-                          alignment: Alignment.center,
-                          decoration: BoxDecoration(
-                              color: Color(0xFF08BA64).withOpacity(0.15),
-                              borderRadius: BorderRadius.circular(10.r)),
-                          child: Text(
-                            "Contact for Booking",
-                            style: TextStyle(
-                                color: Colors.green,
-                                fontSize: 16.sp,
-                                fontWeight: FontWeight.w500),
-                          ),
+                      // if (locationprovider.distance >= 1.0)
+                      Container(
+                        height: 62.h,
+                        width: 170.w,
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                            color: Color(0xFF08BA64).withOpacity(0.15),
+                            borderRadius: BorderRadius.circular(10.r)),
+                        child: Text(
+                          "Contact for Booking",
+                          style: TextStyle(
+                              color: Colors.green,
+                              fontSize: 16.sp,
+                              fontWeight: FontWeight.w500),
                         ),
+                      ),
                       SizedBox(width: 10.w),
                       // if (locationprovider.distance <= 1.0)
                       Container(

@@ -3,20 +3,15 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
-import '../../Model/hotelroom.dart';
-import '../../Model/hotels.dart';
-import '../../provider/Location/location.dart';
-import '../../provider/hotel.dart';
 import '../utilitis/constant/color.dart';
 import '../utilitis/submit_button.dart';
 import 'ButtomSheet/available_offer_buttom_sheet.dart';
 import 'offer/grab_offer.dart';
 
 class HoteldetailsPage2 extends StatefulWidget {
-  final int hotelid;
-  final HotesDatum data;
-  const HoteldetailsPage2({Key? key, required this.hotelid, required this.data})
-      : super(key: key);
+  // final int hotelid;
+  // final HotesDatum data;
+  const HoteldetailsPage2({Key? key}) : super(key: key);
 
   @override
   State<HoteldetailsPage2> createState() => _HoteldetailsPage2State();
@@ -25,39 +20,39 @@ class HoteldetailsPage2 extends StatefulWidget {
 class _HoteldetailsPage2State extends State<HoteldetailsPage2> {
   bool loading = false;
 
-  Future loaddata() async {
-    setState(() {
-      loading = true;
-    });
-    final provider = Provider.of<Hotelprovider>(context, listen: false);
-    await provider.gethotelroom(hotelid: widget.hotelid);
-    await location_distance_for_hotel();
-    setState(() {
-      loading = false;
-    });
-  }
+  // Future loaddata() async {
+  //   setState(() {
+  //     loading = true;
+  //   });
+  //   final provider = Provider.of<Hotelprovider>(context, listen: false);
+  //   await provider.gethotelroom(hotelid: widget.hotelid);
+  //   await location_distance_for_hotel();
+  //   setState(() {
+  //     loading = false;
+  //   });
+  // }
 
-  Future location_distance_for_hotel() async {
-    final _locationprovider =
-        Provider.of<Locationprovider>(context, listen: false);
-    _locationprovider.calculateDistance(
-      lat2: _locationprovider.currentlocationData!.latitude,
-      lon2: _locationprovider.currentlocationData!.longitude,
-      lat1: double.parse(widget.data.latitude),
-      lon1: double.parse(widget.data.longitude),
-    );
-  }
+  // Future location_distance_for_hotel() async {
+  //   final _locationprovider =
+  //       Provider.of<Locationprovider>(context, listen: false);
+  //   _locationprovider.calculateDistance(
+  //     lat2: _locationprovider.currentlocationData!.latitude,
+  //     lon2: _locationprovider.currentlocationData!.longitude,
+  //     lat1: double.parse(widget.data.latitude),
+  //     lon1: double.parse(widget.data.longitude),
+  //   );
+  // }
 
-  @override
-  void initState() {
-    print(widget.hotelid);
-    loaddata();
-    super.initState();
-  }
+  // @override
+  // void initState() {
+  //   print(widget.hotelid);
+  //   loaddata();
+  //   super.initState();
+  // }
 
   @override
   Widget build(BuildContext context) {
-    final provider = Provider.of<Hotelprovider>(context);
+    // final provider = Provider.of<Hotelprovider>(context);
     return Scaffold(
       backgroundColor: Color(0xFfF7F7F7),
       body: loading
@@ -206,7 +201,7 @@ class _HoteldetailsPage2State extends State<HoteldetailsPage2> {
                             ),
                             SizedBox(width: 10.h),
                             Text(
-                              "${widget.data.hotelRatings.length}",
+                              "250",
                               style: TextStyle(
                                   fontSize: 18.sp,
                                   fontWeight: FontWeight.w500,
@@ -238,7 +233,7 @@ class _HoteldetailsPage2State extends State<HoteldetailsPage2> {
                         ),
                         SizedBox(height: 16.h),
                         Text(
-                          widget.data.name,
+                          "widget.data.name",
                           style: TextStyle(
                               fontSize: 24.sp,
                               fontWeight: FontWeight.w500,
@@ -252,7 +247,7 @@ class _HoteldetailsPage2State extends State<HoteldetailsPage2> {
                               size: 15,
                             ),
                             Text(
-                              widget.data.location,
+                              "widget.data.location",
                               style: TextStyle(
                                   fontSize: 12.sp,
                                   color: Colors.grey,
@@ -262,7 +257,7 @@ class _HoteldetailsPage2State extends State<HoteldetailsPage2> {
                         ),
                         SizedBox(height: 20.h),
                         Text(
-                          widget.data.description,
+                          "widget.data.description",
                           style: TextStyle(
                               fontSize: 14.sp,
                               fontWeight: FontWeight.w400,
@@ -408,12 +403,12 @@ class _HoteldetailsPage2State extends State<HoteldetailsPage2> {
                         Spacer(),
                         GestureDetector(
                           onTap: () {
-                            // showModalBottomSheet(
-                            //     isScrollControlled: true,
-                            //     backgroundColor: Colors.transparent,
-                            //     context: context,
-                            //     builder: ((context) =>
-                            //         AvailableofferButtomSheet()));
+                            showModalBottomSheet(
+                                isScrollControlled: true,
+                                backgroundColor: Colors.transparent,
+                                context: context,
+                                builder: ((context) =>
+                                    AvailableofferButtomSheet()));
                           },
                           child: Container(
                             height: 42.h,
@@ -459,20 +454,20 @@ class _HoteldetailsPage2State extends State<HoteldetailsPage2> {
   }
 
   Widget roomlist() {
-    final provider = Provider.of<Hotelprovider>(context);
+    // final provider = Provider.of<Hotelprovider>(context);
 
     return ListView.builder(
       shrinkWrap: true,
       physics: NeverScrollableScrollPhysics(),
-      itemCount: provider.hotelRoom!.data!.length,
+      itemCount: 5,
       itemBuilder: (context, index) {
-        var data = provider.hotelRoom!.data![index];
-        return resturentbox(data);
+        // var data = provider.hotelRoom!.data![index];
+        return resturentbox(null);
       },
     );
   }
 
-  Widget resturentbox(HotelroomDatum data) {
+  Widget resturentbox(data) {
     return Container(
       margin: EdgeInsets.only(left: 24.w, right: 24.w, bottom: 10.h),
       height: 144.h,
@@ -488,7 +483,7 @@ class _HoteldetailsPage2State extends State<HoteldetailsPage2> {
               backgroundColor: Colors.transparent,
               isScrollControlled: true,
               context: context,
-              builder: ((context) => GrabOffer(data: data)));
+              builder: ((context) => GrabOffer()));
         },
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -506,7 +501,7 @@ class _HoteldetailsPage2State extends State<HoteldetailsPage2> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    data.hotelInfo!.roomTitle!,
+                    "roomTitle!",
                     style:
                         TextStyle(fontSize: 18.sp, fontWeight: FontWeight.w500),
                   ),
@@ -569,7 +564,7 @@ class _HoteldetailsPage2State extends State<HoteldetailsPage2> {
                           top: 10.h,
                           right: 0.w,
                           child: Text(
-                            "${data.hotelInfo!.roomDiscount}%",
+                            "10%",
                             style: TextStyle(
                               fontSize: 13.sp,
                               fontWeight: FontWeight.w700,
@@ -595,14 +590,14 @@ class _HoteldetailsPage2State extends State<HoteldetailsPage2> {
                         ),
                       ),
                       Text(
-                        "${data.hotelInfo!.roomDiscountPrice!} tk",
+                        "500 tk",
                         style: TextStyle(
                             fontSize: 15.sp,
                             fontWeight: FontWeight.w700,
                             color: Color(0xff08BA64)),
                       ),
                       Text(
-                        "${data.hotelInfo!.roomPrice} tk",
+                        "roomPrice tk",
                         style: TextStyle(
                             fontSize: 11.sp,
                             fontWeight: FontWeight.w300,

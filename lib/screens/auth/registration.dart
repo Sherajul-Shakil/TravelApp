@@ -7,8 +7,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 
-import '../../Http/from.dart';
-
 class RegistrationScreen extends StatefulWidget {
   const RegistrationScreen({Key? key}) : super(key: key);
 
@@ -64,27 +62,27 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
 
   bool loading = false;
 
-  Future registation() async {
-    setState(() {
-      loading = true;
-    });
-    await HttpForm().registation(
-        context: context,
-        birthday:
-            "${dobdayController.text} ${dobmonthController.text} ${dobyearController.text}",
-        city: cityController.text,
-        email: emailController.text,
-        gender: genderController.text,
-        name: nameController.text,
-        number: phoneController.text,
-        password: passwordController.text,
-        prefer: preferlist.join(",").toString(),
-        location: "23.810331,90.412521");
-    setState(() {
-      loading = false;
-    });
-    // print(preferlist.join(",").toString());
-  }
+  // Future registation() async {
+  //   setState(() {
+  //     loading = true;
+  //   });
+  //   await HttpForm().registation(
+  //       context: context,
+  //       birthday:
+  //           "${dobdayController.text} ${dobmonthController.text} ${dobyearController.text}",
+  //       city: cityController.text,
+  //       email: emailController.text,
+  //       gender: genderController.text,
+  //       name: nameController.text,
+  //       number: phoneController.text,
+  //       password: passwordController.text,
+  //       prefer: preferlist.join(",").toString(),
+  //       location: "23.810331,90.412521");
+  //   setState(() {
+  //     loading = false;
+  //   });
+  //   // print(preferlist.join(",").toString());
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -463,7 +461,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                           )
                         : InkWell(
                             onTap: () {
-                              registation();
+                              // registation();
                             },
                             child: Center(
                               child: Container(

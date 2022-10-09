@@ -3,16 +3,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../Http/restorent.dart';
-import '../../Model/restorentmodel.dart';
-import '../../Model/resturant_menu.dart';
-import '../../Model/resturant_offer.dart';
+// import '../../Http/restorent.dart';
+// import '../../Model/restorentmodel.dart';
+// import '../../Model/resturant_menu.dart';
+// import '../../Model/resturant_offer.dart';
 import '../utilitis/constant/color.dart';
 import '../utilitis/submit_button.dart';
 
 class RestaurantScreen extends StatefulWidget {
-  final RestorentDatum data;
-  const RestaurantScreen({Key? key, required this.data}) : super(key: key);
+  // final RestorentDatum data;
+  const RestaurantScreen({Key? key}) : super(key: key);
 
   @override
   State<RestaurantScreen> createState() => _RestaurantScreenState();
@@ -173,7 +173,7 @@ class _RestaurantScreenState extends State<RestaurantScreen> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              widget.data.restaurantName!,
+                              "widget.data.restaurantName!",
                               style: TextStyle(fontSize: 20),
                             ),
                             SizedBox(height: 10),
@@ -181,7 +181,7 @@ class _RestaurantScreenState extends State<RestaurantScreen> {
                               children: [
                                 Icon(Icons.location_on, color: Colors.grey),
                                 Text(
-                                  widget.data.restaurantLocation!,
+                                  "widget.data.restaurantLocation!",
                                   style: TextStyle(
                                       fontSize: 20, color: Colors.grey),
                                 ),
@@ -191,7 +191,7 @@ class _RestaurantScreenState extends State<RestaurantScreen> {
                         ),
                         SizedBox(height: 20.h),
                         Text(
-                          widget.data.restaurantDescription!,
+                          "widget.data.restaurantDescription!",
                           style: TextStyle(fontSize: 16, color: Colors.grey),
                         ),
                         Divider(),
@@ -208,9 +208,9 @@ class _RestaurantScreenState extends State<RestaurantScreen> {
                               icon: Icons.arrow_forward,
                             )),
                         SizedBox(height: 10.h),
-                        memu(),
+                        // memu(),
                         SizedBox(height: 10.h),
-                        offer()
+                        // offer()
                       ],
                     ),
                   ),
@@ -380,59 +380,59 @@ class _RestaurantScreenState extends State<RestaurantScreen> {
     );
   }
 
-  Widget offer() {
-    return FutureBuilder<Resturantoffer?>(
-        future: Httprestorent().resturentoffer(),
-        builder: ((context, snapshot) {
-          if (snapshot.hasData) {
-            return Container(
-              height: 150.h,
-              child: PageView.builder(
-                  itemCount: snapshot.data!.data!.length,
-                  itemBuilder: ((context, index) {
-                    var data = snapshot.data!.data![index];
-                    return ClipRRect(
-                      borderRadius: BorderRadius.circular(10.r),
-                      child: Image.network(
-                        data.bannerImages!,
-                        fit: BoxFit.cover,
-                      ),
-                    );
-                  })),
-            );
-          } else {
-            return Center(
-              child: CircularProgressIndicator(),
-            );
-          }
-        }));
-  }
+  // Widget offer() {
+  //   return FutureBuilder<Resturantoffer?>(
+  //       future: Httprestorent().resturentoffer(),
+  //       builder: ((context, snapshot) {
+  //         if (snapshot.hasData) {
+  //           return Container(
+  //             height: 150.h,
+  //             child: PageView.builder(
+  //                 itemCount: snapshot.data!.data!.length,
+  //                 itemBuilder: ((context, index) {
+  //                   var data = snapshot.data!.data![index];
+  //                   return ClipRRect(
+  //                     borderRadius: BorderRadius.circular(10.r),
+  //                     child: Image.network(
+  //                       data.bannerImages!,
+  //                       fit: BoxFit.cover,
+  //                     ),
+  //                   );
+  //                 })),
+  //           );
+  //         } else {
+  //           return Center(
+  //             child: CircularProgressIndicator(),
+  //           );
+  //         }
+  //       }));
+  // }
 
-  Widget memu() {
-    return FutureBuilder<ResturantMenu?>(
-        future: Httprestorent().resturentmenu(resturentid: widget.data.id),
-        builder: ((context, snapshot) {
-          if (snapshot.hasData) {
-            return Container(
-              height: 150.h,
-              child: PageView.builder(
-                  itemCount: snapshot.data!.data!.length,
-                  itemBuilder: ((context, index) {
-                    var data = snapshot.data!.data![index];
-                    return ClipRRect(
-                      borderRadius: BorderRadius.circular(10.r),
-                      child: Image.network(
-                        data.menuImages!.split(",").first,
-                        fit: BoxFit.cover,
-                      ),
-                    );
-                  })),
-            );
-          } else {
-            return Center(
-              child: CircularProgressIndicator(),
-            );
-          }
-        }));
-  }
+  // Widget memu() {
+  //   return FutureBuilder<ResturantMenu?>(
+  //       future: Httprestorent().resturentmenu(resturentid: widget.data.id),
+  //       builder: ((context, snapshot) {
+  //         if (snapshot.hasData) {
+  //           return Container(
+  //             height: 150.h,
+  //             child: PageView.builder(
+  //                 itemCount: snapshot.data!.data!.length,
+  //                 itemBuilder: ((context, index) {
+  //                   var data = snapshot.data!.data![index];
+  //                   return ClipRRect(
+  //                     borderRadius: BorderRadius.circular(10.r),
+  //                     child: Image.network(
+  //                       data.menuImages!.split(",").first,
+  //                       fit: BoxFit.cover,
+  //                     ),
+  //                   );
+  //                 })),
+  //           );
+  //         } else {
+  //           return Center(
+  //             child: CircularProgressIndicator(),
+  //           );
+  //         }
+  //       }));
+  // }
 }

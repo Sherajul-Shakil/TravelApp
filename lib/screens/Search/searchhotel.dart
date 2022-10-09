@@ -3,7 +3,6 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
-import '../../provider/hotel.dart';
 import '../../utilites/route.dart';
 import '../restaurant _details/hoteldetails.dart';
 
@@ -25,22 +24,23 @@ class _HotelSearchPageState extends State<HotelSearchPage> {
 
   @override
   Widget build(BuildContext context) {
-    final provider = Provider.of<Hotelprovider>(context);
-    return provider.searchloading
-        ? Center(
-            child: CircularProgressIndicator(),
-          )
-        : hotels();
+    // final provider = Provider.of<Hotelprovider>(context);
+    return hotels();
+    // provider.searchloading
+    //     ? Center(
+    //         child: CircularProgressIndicator(),
+    //       )
+    //     :
   }
 
   Widget hotels() {
-    final provider = Provider.of<Hotelprovider>(context);
+    // final provider = Provider.of<Hotelprovider>(context);
     return ListView.builder(
         shrinkWrap: true,
         physics: NeverScrollableScrollPhysics(),
-        itemCount: provider.hotelsearchModel!.data!.length,
+        itemCount: 4,
         itemBuilder: ((context, index) {
-          var data = provider.hotelsearchModel!.data![index];
+          // var data = provider.hotelsearchModel!.data![index];
           return InkWell(
             onTap: () {
               // newpage(HoteldetailsPage2(hotelid: data.id!), context);
@@ -61,7 +61,7 @@ class _HotelSearchPageState extends State<HotelSearchPage> {
                       height: 144.h,
                       width: 105.w,
                       child: Image.network(
-                        data.hotelImages!,
+                        "data.hotelImages!",
                         fit: BoxFit.cover,
                       )),
                   SizedBox(width: 10.w),
@@ -71,7 +71,7 @@ class _HotelSearchPageState extends State<HotelSearchPage> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          data.hotelName!,
+                          "data.hotelName!",
                           style: TextStyle(
                               fontSize: 18.sp, fontWeight: FontWeight.w500),
                         ),
@@ -89,7 +89,7 @@ class _HotelSearchPageState extends State<HotelSearchPage> {
                           ],
                         ),
                         SizedBox(height: 8.h),
-                        Text(data.hotelTags!),
+                        Text("data.hotelTags!"),
                         SizedBox(height: 20.h),
                         RatingBar.builder(
                           itemSize: 20.r,
@@ -106,7 +106,7 @@ class _HotelSearchPageState extends State<HotelSearchPage> {
                           },
                         ),
                         Text(
-                          "${0} review",
+                          "0 review",
                           style: TextStyle(
                               fontSize: 11.sp, fontWeight: FontWeight.w200),
                         )
@@ -132,7 +132,7 @@ class _HotelSearchPageState extends State<HotelSearchPage> {
                                 top: 10.h,
                                 right: 0.w,
                                 child: Text(
-                                  "${data.hotelDiscount}%",
+                                  "data.hotelDiscount%",
                                   style: TextStyle(
                                     fontSize: 13.sp,
                                     fontWeight: FontWeight.w700,
@@ -158,14 +158,14 @@ class _HotelSearchPageState extends State<HotelSearchPage> {
                               ),
                             ),
                             Text(
-                              "${data.hotelOfferPrice} tk",
+                              "data.hotelOfferPrice tk",
                               style: TextStyle(
                                   fontSize: 15.sp,
                                   fontWeight: FontWeight.w700,
                                   color: Color(0xff08BA64)),
                             ),
                             Text(
-                              "${data.hotelPrice} tk",
+                              "data.hotelPrice tk",
                               style: TextStyle(
                                   fontSize: 11.sp,
                                   fontWeight: FontWeight.w300,

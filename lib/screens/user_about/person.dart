@@ -3,10 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:travel_app_master/utilites/colors.dart';
 
-import '../../Http/profile.dart';
-import '../../Model/profiledata.dart';
-import '../../provider/hotel.dart';
-
 class PersonScreen extends StatefulWidget {
   PersonScreen({Key? key}) : super(key: key);
 
@@ -22,27 +18,25 @@ class _PersonScreenState extends State<PersonScreen> {
     "assets/single_room.png",
   ];
 
+  bool loading = false;
 
+  // Future loaddata() async {
+  //   final provider = Provider.of<Hotelprovider>(context, listen: false);
+  //   await provider.getprofile();
+  //   setState(() {
+  //     loading = false;
+  //   });
+  // }
 
-  bool loading = true;
-
-  Future loaddata() async {
-    final provider = Provider.of<Hotelprovider>(context, listen: false);
-    await provider.getprofile();
-    setState(() {
-      loading = false;
-    });
-  }
-
-  @override
-  void initState() {
-    loaddata();
-    super.initState();
-  }
+  // @override
+  // void initState() {
+  //   loaddata();
+  //   super.initState();
+  // }
 
   @override
   Widget build(BuildContext context) {
-     final provider = Provider.of<Hotelprovider>(context);
+    //  final provider = Provider.of<Hotelprovider>(context);
     return Scaffold(
       backgroundColor: Color(0xffE5E5E5),
       appBar: AppBar(
@@ -110,20 +104,20 @@ class _PersonScreenState extends State<PersonScreen> {
                                   children: [
                                     SizedBox(height: 50.h),
                                     Text(
-                                      provider.profileData!.data!.name!,
+                                      "Rakibul Islam",
                                       style: TextStyle(
                                           color: Colors.black,
                                           fontWeight: FontWeight.w500,
                                           fontSize: 20.sp),
                                     ),
                                     Text(
-                                      provider.profileData!.data!.email!,
+                                      "user@gmail.com",
                                       style: TextStyle(
                                         color: Colors.black,
                                       ),
                                     ),
                                     Text(
-                                      provider.profileData!.data!.city!,
+                                      "Dhaka",
                                       style: TextStyle(
                                         color: Colors.black,
                                       ),

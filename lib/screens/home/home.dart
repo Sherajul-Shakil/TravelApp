@@ -3,8 +3,6 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
-import '../../provider/hotel.dart';
-import '../../provider/pagecontroll.dart';
 import '../../utilites/route.dart';
 import '../Search/search.dart';
 import '../restaurant _details/offer/offer_page.dart';
@@ -29,31 +27,31 @@ class _HomeScreenState extends State<HomeScreen> {
     "assets/16taka.png",
   ];
 
-  bool loading = true;
+  bool loading = false;
 
-  Future loaddata() async {
-    final provider = Provider.of<Hotelprovider>(context, listen: false);
-    // await provider.getcategory();
-    await provider.getofferbanner();
-    await provider.gethotels();
-    await provider.getprofile();
-    await provider.getrestorent();
-    setState(() {
-      loading = false;
-    });
-  }
+  // Future loaddata() async {
+  //   // final provider = Provider.of<Hotelprovider>(context, listen: false);
+  //   // await provider.getcategory();
+  //   await provider.getofferbanner();
+  //   await provider.gethotels();
+  //   await provider.getprofile();
+  //   await provider.getrestorent();
+  //   setState(() {
+  //     loading = false;
+  //   });
+  // }
 
   int selectcategory = 0;
 
-  @override
-  void initState() {
-    loaddata();
-    super.initState();
-  }
+  // @override
+  // void initState() {
+  //   loaddata();
+  //   super.initState();
+  // }
 
   @override
   Widget build(BuildContext context) {
-    final provider = Provider.of<Hotelprovider>(context);
+    // final provider = Provider.of<Hotelprovider>(context);
     return SafeArea(
       child: Scaffold(
           backgroundColor: Color(0xffF7F7F7),
@@ -87,7 +85,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  "Hi, ${provider.profileData!.data!.name!}",
+                                  "Hi, pk",
                                   style: TextStyle(
                                       fontSize: 18.sp,
                                       fontWeight: FontWeight.w500),
@@ -100,7 +98,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                       size: 15,
                                     ),
                                     Text(
-                                      provider.profileData!.data!.city!,
+                                      "city!",
                                       style: TextStyle(
                                           color: Colors.grey,
                                           fontSize: 13.sp,
@@ -231,22 +229,22 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Widget category() {
-    final provider = Provider.of<Hotelprovider>(context);
-    final pageprovider = Provider.of<PagecontrollProvider>(context);
+    // final provider = Provider.of<Hotelprovider>(context);
+    // final pageprovider = Provider.of<PagecontrollProvider>(context);
     return Container(
       height: 90,
       child: ListView.separated(
         scrollDirection: Axis.horizontal,
         padding: EdgeInsets.only(left: 24.w),
-        itemCount: provider.category!.data!.length,
+        itemCount: 4,
         itemBuilder: (BuildContext context, int index) {
-          var data = provider.category!.data![index];
+          // var data = provider.category!.data![index];
           return InkWell(
             onTap: () {
-              setState(() {
-                pageprovider.categoryindex(index);
-                pageprovider.pageController.jumpToPage(1);
-              });
+              // setState(() {
+              //   pageprovider.categoryindex(index);
+              //   pageprovider.pageController.jumpToPage(1);
+              // });
             },
             child: Column(
               children: [
@@ -258,12 +256,12 @@ class _HomeScreenState extends State<HomeScreen> {
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(16.r)),
                   child: Image.network(
-                    data.categoryIcon!,
+                    "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
                   ),
                 ),
                 SizedBox(height: 5.h),
                 Text(
-                  data.categoryTitle!,
+                  "categoryTitle!",
                   style: TextStyle(
                       color: Color(0xFf9C9C9C),
                       fontSize: 13.sp,
@@ -283,7 +281,7 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Widget slider() {
-    final provider = Provider.of<Hotelprovider>(context);
+    // final provider = Provider.of<Hotelprovider>(context);
     return Container(
       child: Column(
         children: [
@@ -333,9 +331,9 @@ class _HomeScreenState extends State<HomeScreen> {
           Container(
             height: 250.h,
             child: PageView.builder(
-                itemCount: provider.offerbanner!.data.length,
+                itemCount: 4,
                 itemBuilder: ((context, index) {
-                  var data = provider.offerbanner!.data[index];
+                  // var data = provider.offerbanner!.data[index];
                   return Container(
                     padding: EdgeInsets.all(25.r),
                     decoration: BoxDecoration(
@@ -343,7 +341,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     child: ClipRRect(
                         borderRadius: BorderRadius.circular(10.r),
                         child: Image.network(
-                          data.bannerPhoto,
+                          "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
                           fit: BoxFit.cover,
                         )),
                   );
@@ -355,7 +353,7 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Widget hotels() {
-    final provider = Provider.of<Hotelprovider>(context);
+    // final provider = Provider.of<Hotelprovider>(context);
     return Column(
       children: [
         Container(
@@ -398,15 +396,14 @@ class _HomeScreenState extends State<HomeScreen> {
         ListView.builder(
             shrinkWrap: true,
             physics: NeverScrollableScrollPhysics(),
-            itemCount: provider.hotels!.data.length,
+            itemCount: 4,
             itemBuilder: ((context, index) {
-              var data = provider.hotels!.data[index];
+              // var data = provider.hotels!.data[index];
               return Column(
                 children: [
                   InkWell(
                     onTap: () {
-                      newpage(HoteldetailsPage2(hotelid: data.id, data: data),
-                          context);
+                      newpage(HoteldetailsPage2(), context);
                     },
                     child: Container(
                       height: 144.h,
@@ -438,7 +435,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Text(
-                                  data.name,
+                                  "data.name",
                                   style: TextStyle(
                                       fontSize: 18.sp,
                                       fontWeight: FontWeight.w500),
@@ -457,7 +454,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   ],
                                 ),
                                 SizedBox(height: 8.h),
-                                Text(data.hotelTags[0].name),
+                                Text("hotelTags.name"),
                                 SizedBox(height: 20.h),
                                 RatingBar.builder(
                                   itemSize: 20.r,
@@ -475,7 +472,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   },
                                 ),
                                 Text(
-                                  "${data.hotelRatings.length} review",
+                                  "10 review",
                                   style: TextStyle(
                                       fontSize: 11.sp,
                                       fontWeight: FontWeight.w200),
@@ -502,7 +499,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                         top: 10.h,
                                         right: 0.w,
                                         child: Text(
-                                          "${data.discount}%",
+                                          "30%",
                                           style: TextStyle(
                                             fontSize: 13.sp,
                                             fontWeight: FontWeight.w700,
@@ -528,14 +525,14 @@ class _HomeScreenState extends State<HomeScreen> {
                                       ),
                                     ),
                                     Text(
-                                      "${data.offerPrice} tk",
+                                      "offerPrice tk",
                                       style: TextStyle(
                                           fontSize: 15.sp,
                                           fontWeight: FontWeight.w700,
                                           color: Color(0xff08BA64)),
                                     ),
                                     Text(
-                                      "${data.price} tk",
+                                      "data.price tk",
                                       style: TextStyle(
                                           fontSize: 11.sp,
                                           fontWeight: FontWeight.w300,
@@ -560,16 +557,17 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Widget restorent() {
-    final provider = Provider.of<Hotelprovider>(context);
+    // final provider = Provider.of<Hotelprovider>(context);
     return ListView.builder(
         shrinkWrap: true,
         physics: NeverScrollableScrollPhysics(),
-        itemCount: provider.restorent!.data!.length,
+        itemCount: 5,
+        // provider.restorent!.data!.length,
         itemBuilder: ((context, index) {
-          var data = provider.restorent!.data![index];
+          // var data = provider.restorent!.data![index];
           return InkWell(
             onTap: () {
-              newpage(RestaurantScreen(data: data), context);
+              // newpage(RestaurantScreen(data: data), context);
             },
             child: Container(
               height: 144.h,
@@ -587,7 +585,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       height: 144.h,
                       width: 105.w,
                       child: Image.network(
-                        data.restaurantImages!,
+                        "data.restaurantImages!",
                         fit: BoxFit.cover,
                       )),
                   SizedBox(width: 10.w),
@@ -597,7 +595,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          data.restaurantName!,
+                          "data.restaurantName!",
                           style: TextStyle(
                               fontSize: 18.sp, fontWeight: FontWeight.w500),
                         ),
@@ -615,7 +613,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           ],
                         ),
                         SizedBox(height: 8.h),
-                        Text(data.restaurantTags!),
+                        Text("data.restaurantTags!"),
                         SizedBox(height: 20.h),
                         RatingBar.builder(
                           itemSize: 20.r,
@@ -658,7 +656,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 top: 10.h,
                                 right: 0.w,
                                 child: Text(
-                                  "${data.restaurantDiscount}%",
+                                  "restaurantDiscount%",
                                   style: TextStyle(
                                     fontSize: 13.sp,
                                     fontWeight: FontWeight.w700,
@@ -742,7 +740,9 @@ class _HomeScreenState extends State<HomeScreen> {
                         image: DecorationImage(
                             fit: BoxFit.cover,
                             image: NetworkImage(
-                                "https://s3-alpha-sig.figma.com/img/a240/b900/13cd146be9d499fd002d2eb37f80f830?Expires=1663545600&Signature=F8BCx92CUQaxz7XHG2CT2-K4FiFdMOCGMo1aK2ceOxN5kWyj6KGfkroNyZm8UuVbmTNm5-ibG4IxpeyZZqTfDMJ8RSNAqAMq2fHy5eYs7DJd4cRJhJp7AWmM8QdQMGmG4n0jzVg-JNz47blSZbvzz9Vgh0FjbbbUqgDdzYo8OCpO246jx~GhtQGPZrXIkdPTmyU1yAB6VgeM9laKlFrfLSu9KouD4qEFuRcGHYmzMOFo8xNWm0kAHTeK~O9DDHLGzVlvs1c9JDvaD00fBShZ3nLVvasKi3s1~-CEbr6Pn5y-vdN~D2LI6bZotBwDmOXC0A4Km~u7DqpBZMpjuQGs~w__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"))),
+                              "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
+                              // "https://s3-alpha-sig.figma.com/img/a240/b900/13cd146be9d499fd002d2eb37f80f830?Expires=1663545600&Signature=F8BCx92CUQaxz7XHG2CT2-K4FiFdMOCGMo1aK2ceOxN5kWyj6KGfkroNyZm8UuVbmTNm5-ibG4IxpeyZZqTfDMJ8RSNAqAMq2fHy5eYs7DJd4cRJhJp7AWmM8QdQMGmG4n0jzVg-JNz47blSZbvzz9Vgh0FjbbbUqgDdzYo8OCpO246jx~GhtQGPZrXIkdPTmyU1yAB6VgeM9laKlFrfLSu9KouD4qEFuRcGHYmzMOFo8xNWm0kAHTeK~O9DDHLGzVlvs1c9JDvaD00fBShZ3nLVvasKi3s1~-CEbr6Pn5y-vdN~D2LI6bZotBwDmOXC0A4Km~u7DqpBZMpjuQGs~w__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA",
+                            ))),
                     child: Stack(
                       fit: StackFit.expand,
                       children: [

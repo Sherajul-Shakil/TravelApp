@@ -3,7 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:travel_app_master/screens/auth/registration.dart';
 import 'package:travel_app_master/screens/navigation.dart';
 
-import '../../Http/from.dart';
 import '../utilitis/custom_textfield.dart';
 
 class LogInScreen extends StatefulWidget {
@@ -23,19 +22,19 @@ class _LogInScreenState extends State<LogInScreen> {
 
   bool loading = false;
 
-  Future login() async {
-    setState(() {
-      loading = true;
-    });
-    await HttpForm().login(
-      context: context,
-      email: emailController.text,
-      password: passwordController.text,
-    );
-    setState(() {
-      loading = false;
-    });
-  }
+  // Future login() async {
+  //   setState(() {
+  //     loading = true;
+  //   });
+  //   await HttpForm().login(
+  //     context: context,
+  //     email: emailController.text,
+  //     password: passwordController.text,
+  //   );
+  //   setState(() {
+  //     loading = false;
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -127,13 +126,13 @@ class _LogInScreenState extends State<LogInScreen> {
                           )
                         : InkWell(
                             onTap: () {
-                              login();
-                              // Navigator.pushAndRemoveUntil(
-                              //     context,
-                              //     MaterialPageRoute(
-                              //         builder: ((context) =>
-                              //             NavigationScreen())),
-                              //     (route) => false);
+                              // login();
+                              Navigator.pushAndRemoveUntil(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: ((context) =>
+                                          NavigationScreen())),
+                                  (route) => false);
                             },
                             child: Container(
                               height: 50.h,

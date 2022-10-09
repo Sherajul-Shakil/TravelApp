@@ -3,9 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
-import 'package:travel_app_master/provider/Location/location.dart';
-import 'package:travel_app_master/provider/hotel.dart';
-import 'package:travel_app_master/provider/pagecontroll.dart';
+
 import 'package:travel_app_master/screens/auth/login.dart';
 import 'package:travel_app_master/screens/navigation.dart';
 import 'package:travel_app_master/screens/splash.dart';
@@ -17,11 +15,12 @@ void main() async {
   await Hive.openBox("user");
   Hive.init(dir.path);
   // await di.init();
-  runApp(MultiProvider(providers: [
-    ChangeNotifierProvider(create: ((context) => Hotelprovider())),
-    ChangeNotifierProvider(create: ((context) => Locationprovider())),
-    ChangeNotifierProvider(create: ((context) => PagecontrollProvider())),
-  ], child: MyApp()));
+  // runApp(MultiProvider(providers: [
+  //   ChangeNotifierProvider(create: ((context) => Hotelprovider())),
+  //   ChangeNotifierProvider(create: ((context) => Locationprovider())),
+  //   ChangeNotifierProvider(create: ((context) => PagecontrollProvider())),
+  // ], child: MyApp()));
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
