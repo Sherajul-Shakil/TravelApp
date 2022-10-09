@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -18,22 +17,19 @@ void main() async {
   await Hive.openBox("user");
   Hive.init(dir.path);
   // await di.init();
-  runApp(MultiProvider(
-    providers: [
-      ChangeNotifierProvider(create: ((context) => Hotelprovider())),
-      ChangeNotifierProvider(create: ((context) => Locationprovider())),
-      ChangeNotifierProvider(create: ((context) => PagecontrollProvider())),
-    ],
-    child: MyApp()));
+  runApp(MultiProvider(providers: [
+    ChangeNotifierProvider(create: ((context) => Hotelprovider())),
+    ChangeNotifierProvider(create: ((context) => Locationprovider())),
+    ChangeNotifierProvider(create: ((context) => PagecontrollProvider())),
+  ], child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
-  
 
   @override
   Widget build(BuildContext context) {
-     var box = Hive.box('user');
+    var box = Hive.box('user');
     return ScreenUtilInit(
       designSize: const Size(414, 896),
       minTextAdapt: true,
@@ -50,7 +46,8 @@ class MyApp extends StatelessWidget {
           home: child,
         );
       },
-      child: box.get('token') == null ? SplashScreen() : NavigationScreen(),
+      child: NavigationScreen(),
+      // box.get('token') == null ? SplashScreen() : NavigationScreen(),
     );
   }
 }

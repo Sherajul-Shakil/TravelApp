@@ -475,13 +475,12 @@ class _SearchScreenState extends State<SearchScreen> {
     return ListView.builder(
         shrinkWrap: true,
         physics: NeverScrollableScrollPhysics(),
-        itemCount: provider.hotels!.data!.length,
+        itemCount: provider.hotels!.data.length,
         itemBuilder: ((context, index) {
-          var data = provider.hotels!.data![index];
+          var data = provider.hotels!.data[index];
           return InkWell(
             onTap: () {
-              newpage(
-                  HoteldetailsPage2(hotelid: data!.id!, data: data), context);
+              newpage(HoteldetailsPage2(hotelid: data.id, data: data), context);
             },
             child: Container(
               height: 144.h,
@@ -510,7 +509,7 @@ class _SearchScreenState extends State<SearchScreen> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          data!.name!,
+                          data.name,
                           style: TextStyle(
                               fontSize: 18.sp, fontWeight: FontWeight.w500),
                         ),

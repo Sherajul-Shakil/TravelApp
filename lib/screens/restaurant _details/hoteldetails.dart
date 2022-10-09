@@ -43,7 +43,7 @@ class _HoteldetailsPage2State extends State<HoteldetailsPage2> {
     _locationprovider.calculateDistance(
       lat2: _locationprovider.currentlocationData!.latitude,
       lon2: _locationprovider.currentlocationData!.longitude,
-      lat1: double.parse(widget.data.latitude!),
+      lat1: double.parse(widget.data.latitude),
       lon1: double.parse(widget.data.longitude),
     );
   }
@@ -238,7 +238,7 @@ class _HoteldetailsPage2State extends State<HoteldetailsPage2> {
                         ),
                         SizedBox(height: 16.h),
                         Text(
-                          widget.data.name!,
+                          widget.data.name,
                           style: TextStyle(
                               fontSize: 24.sp,
                               fontWeight: FontWeight.w500,

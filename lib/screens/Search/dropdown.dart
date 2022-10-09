@@ -58,10 +58,9 @@ class _DropdownlocationState extends State<Dropdownlocation> {
                   ListView.builder(
                       shrinkWrap: true,
                       physics: NeverScrollableScrollPhysics(),
-                      itemCount: currentlocation.nearbylocation!.places!.length,
+                      itemCount: currentlocation.nearbylocation!.place.length,
                       itemBuilder: ((context, index) {
-                        var data =
-                            currentlocation.nearbylocation!.places![index];
+                        var data = currentlocation.nearbylocation!.place[index];
                         return InkWell(
                           onTap: () {
                             widget.onpresed(data.area);
@@ -98,14 +97,14 @@ class _DropdownlocationState extends State<Dropdownlocation> {
                                         CrossAxisAlignment.start,
                                     children: [
                                       Text(
-                                        data.name!,
+                                        data.name,
                                         style: TextStyle(
                                             fontSize: 22.sp,
                                             color: Colors.white,
                                             fontWeight: FontWeight.bold),
                                       ),
                                       Text(
-                                        data.address!,
+                                        data.address,
                                         style: TextStyle(
                                           fontSize: 18.sp,
                                           color: Colors.white,
@@ -114,7 +113,7 @@ class _DropdownlocationState extends State<Dropdownlocation> {
                                       Row(
                                         children: [
                                           Text(
-                                            data.city!,
+                                            data.city,
                                             style: TextStyle(
                                               fontSize: 18.sp,
                                               color: Colors.white,
@@ -128,7 +127,7 @@ class _DropdownlocationState extends State<Dropdownlocation> {
                                             ),
                                           ),
                                           Text(
-                                            data.area!,
+                                            data.area,
                                             style: TextStyle(
                                               fontSize: 18.sp,
                                               color: Colors.white,

@@ -333,9 +333,9 @@ class _HomeScreenState extends State<HomeScreen> {
           Container(
             height: 250.h,
             child: PageView.builder(
-                itemCount: provider.offerbanner!.data!.length,
+                itemCount: provider.offerbanner!.data.length,
                 itemBuilder: ((context, index) {
-                  var data = provider.offerbanner!.data![index];
+                  var data = provider.offerbanner!.data[index];
                   return Container(
                     padding: EdgeInsets.all(25.r),
                     decoration: BoxDecoration(
@@ -343,7 +343,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     child: ClipRRect(
                         borderRadius: BorderRadius.circular(10.r),
                         child: Image.network(
-                          data.bannerPhoto!,
+                          data.bannerPhoto,
                           fit: BoxFit.cover,
                         )),
                   );
@@ -398,14 +398,14 @@ class _HomeScreenState extends State<HomeScreen> {
         ListView.builder(
             shrinkWrap: true,
             physics: NeverScrollableScrollPhysics(),
-            itemCount: provider.hotels!.data!.length,
+            itemCount: provider.hotels!.data.length,
             itemBuilder: ((context, index) {
-              var data = provider.hotels!.data![index];
+              var data = provider.hotels!.data[index];
               return Column(
                 children: [
                   InkWell(
                     onTap: () {
-                      newpage(HoteldetailsPage2(hotelid: data!.id!, data: data),
+                      newpage(HoteldetailsPage2(hotelid: data.id, data: data),
                           context);
                     },
                     child: Container(
@@ -438,7 +438,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Text(
-                                  data!.name!,
+                                  data.name,
                                   style: TextStyle(
                                       fontSize: 18.sp,
                                       fontWeight: FontWeight.w500),
