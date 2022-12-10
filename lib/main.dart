@@ -45,8 +45,9 @@ class MyApp extends StatelessWidget {
           home: child,
         );
       },
-      child: SplashScreen(),
+      child: NavigationScreen(),
       // box.get('token') == null ? SplashScreen() : NavigationScreen(),
+      //Uploading in Shakil branch
     );
   }
 }
