@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
 
 import 'package:travel_app_master/screens/auth/login.dart';
+import 'package:travel_app_master/screens/auth/registration.dart';
 import 'package:travel_app_master/screens/navigation.dart';
 import 'package:travel_app_master/screens/splash.dart';
+import 'package:travel_app_master/widgets/test.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -34,7 +37,7 @@ class MyApp extends StatelessWidget {
       minTextAdapt: true,
       splitScreenMode: true,
       builder: (context, child) {
-        return MaterialApp(
+        return GetMaterialApp(
           debugShowCheckedModeBanner: false,
           title: 'Travel App',
           // You can use the library anywhere in the app even in theme
@@ -45,7 +48,7 @@ class MyApp extends StatelessWidget {
           home: child,
         );
       },
-      child: SplashScreen(),
+      child: RegistrationScreen(),
       // box.get('token') == null ? SplashScreen() : NavigationScreen(),
     );
   }
