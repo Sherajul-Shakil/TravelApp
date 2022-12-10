@@ -32,14 +32,8 @@ class _DropdownlocationState extends State<Dropdownlocation> {
   @override
   Widget build(BuildContext context) {
     // final currentlocation = Provider.of<Locationprovider>(context);
-    return loading
-        ? Center(
-            child: CircularProgressIndicator(),
-          )
-        : SingleChildScrollView(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 15),
-              child: Column(
+    return SingleChildScrollView(
+            child: Column(
                 children: [
                   Column(
                     children: [
@@ -140,40 +134,45 @@ class _DropdownlocationState extends State<Dropdownlocation> {
                             ),
                           ),
                         );
-                      }))
-                  // Image.asset("assets/map.png"),
-                  // Container(
-                  //   width: double.infinity,
-                  //   height: 56,
-                  //   decoration:
-                  //       BoxDecoration(borderRadius: BorderRadius.circular(20)),
-                  //   child: ElevatedButton(
-                  //     onPressed: () {
-                  //       // Navigator.push(context, MaterialPageRoute(builder: (_)=>SocialLogoScreen()));
-                  //     },
-                  //     child: Row(
-                  //       mainAxisAlignment: MainAxisAlignment.center,
-                  //       children: [
-                  //         Text(
-                  //           "Use my Location",
-                  //           style: TextStyle(fontSize: 18),
-                  //         ),
-                  //         SizedBox(
-                  //           width: 10,
-                  //         ),
-                  //         Icon(Icons.arrow_forward)
-                  //       ],
-                  //     ),
-                  //     style: ElevatedButton.styleFrom(
-                  //         shape: RoundedRectangleBorder(
-                  //           borderRadius: BorderRadius.circular(16),
-                  //         ),
-                  //         primary: Color(0xff08BA64)),
-                  //   ),
-                  // ),
-                ],
-              ),
-            ),
+                      }))]
+              //     // Image.asset("assets/map.png"),
+              //     // Container(
+              //     //   width: double.infinity,
+              //     //   height: 56,
+              //     //   decoration:
+              //     //       BoxDecoration(borderRadius: BorderRadius.circular(20)),
+              //     //   child: ElevatedButton(
+              //     //     onPressed: () {
+              //     //       // Navigator.push(context, MaterialPageRoute(builder: (_)=>SocialLogoScreen()));
+              //     //     },
+              //     //     child: Row(
+              //     //       mainAxisAlignment: MainAxisAlignment.center,
+              //     //       children: [
+              //     //         Text(
+              //     //           "Use my Location",
+              //     //           style: TextStyle(fontSize: 18),
+              //     //         ),
+              //     //         SizedBox(
+              //     //           width: 10,
+              //     //         ),
+              //     //         Icon(Icons.arrow_forward)
+              //     //       ],
+              //     //     ),
+              //     //     style: ElevatedButton.styleFrom(
+              //     //         shape: RoundedRectangleBorder(
+              //     //           borderRadius: BorderRadius.circular(16),
+              //     //         ),
+              //     //         primary: Color(0xff08BA64)),
+              //     //   ),
+              //     // ),
+              //   ],
+              // ),
+
+                    )
+
           );
+
   }
 }
+
+

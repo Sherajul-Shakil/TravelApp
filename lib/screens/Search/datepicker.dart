@@ -33,7 +33,8 @@ class _DatepickerPageState extends State<DatepickerPage> {
               Navigator.pop(context);
             },
             onSubmit: (p0) {
-              Navigator.pop(context);
+             // Navigator.pop(context);
+              print(startdate+" to "+enddate);
             },
             onSelectionChanged: (DateRangePickerSelectionChangedArgs args) {
               setState(() {

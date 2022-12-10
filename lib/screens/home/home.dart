@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
+import 'package:travel_app_master/screens/Search/searchhotel.dart';
 
 import '../../utilites/route.dart';
 import '../Search/search.dart';
@@ -20,12 +21,15 @@ class _HomeScreenState extends State<HomeScreen> {
   TextEditingController searchController = TextEditingController();
   bool onPressed = false;
 
+
   List<String> sImage = [
     "assets/16taka.png",
     "assets/16taka.png",
     "assets/16taka.png",
     "assets/16taka.png",
   ];
+
+
 
   bool loading = false;
 
@@ -145,15 +149,30 @@ class _HomeScreenState extends State<HomeScreen> {
                                 width: 290.w,
                                 height: 48.h,
                                 child: TextFormField(
+                                  controller: searchController,
                                   decoration: InputDecoration(
                                     isDense: true,
                                     contentPadding: EdgeInsets.all(10.r),
                                     filled: true,
+
                                     fillColor: Colors.white,
-                                    suffixIcon: Icon(
-                                      Icons.arrow_forward,
-                                      color: Color(0xff08BA64),
-                                      size: 20,
+                                    suffixIcon: InkWell(
+                                      onTap: (){
+
+                                        String value=searchController.text.toString();
+
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (context) => SearchScreen(selectedcategory: 1,searchItem: value,),
+                                            ));
+
+                                      },
+                                      child: Icon(
+                                        Icons.arrow_forward,
+                                        color: Color(0xff08BA64),
+                                        size: 20,
+                                      ),
                                     ),
                                     labelStyle: TextStyle(
                                       color: Colors.white,
@@ -241,6 +260,7 @@ class _HomeScreenState extends State<HomeScreen> {
           // var data = provider.category!.data![index];
           return InkWell(
             onTap: () {
+
               // setState(() {
               //   pageprovider.categoryindex(index);
               //   pageprovider.pageController.jumpToPage(1);
@@ -255,13 +275,11 @@ class _HomeScreenState extends State<HomeScreen> {
                   decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(16.r)),
-                  child: Image.network(
-                    "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
-                  ),
+                  child: Image.asset("assets/hotel.png")
                 ),
                 SizedBox(height: 5.h),
                 Text(
-                  "categoryTitle!",
+                  "Hotel/Resot",
                   style: TextStyle(
                       color: Color(0xFf9C9C9C),
                       fontSize: 13.sp,

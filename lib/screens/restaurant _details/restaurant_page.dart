@@ -1,7 +1,10 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:flutter_image_slideshow/flutter_image_slideshow.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:travel_app_master/screens/restaurant%20_details/ButtomSheet/claimed.dart';
+import 'package:travel_app_master/screens/restaurant%20_details/offer/grab_offer.dart';
 
 // import '../../Http/restorent.dart';
 // import '../../Model/restorentmodel.dart';
@@ -20,6 +23,8 @@ class RestaurantScreen extends StatefulWidget {
 
 class _RestaurantScreenState extends State<RestaurantScreen> {
   int selectbtn = 0;
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -191,12 +196,14 @@ class _RestaurantScreenState extends State<RestaurantScreen> {
                         ),
                         SizedBox(height: 20.h),
                         Text(
-                          "widget.data.restaurantDescription!",
+                          "widget.data.restaur.restaurantDescription! .restaurantDescription! antDescription!",
                           style: TextStyle(fontSize: 16, color: Colors.grey),
                         ),
+                        SizedBox(height: 10.h),
                         Divider(),
+                        SizedBox(height: 10.h),
                         manubtn(),
-                        SizedBox(height: 5.h),
+                        SizedBox(height: 20.h),
                         Container(
                             width: double.infinity,
                             height: 56,
@@ -204,12 +211,24 @@ class _RestaurantScreenState extends State<RestaurantScreen> {
                               title: "Claim 50% Discount",
                               size: 18,
                               color: PColor.submitButtonColor,
-                              onTap: () {},
+                              onTap: () {
+                                showModalBottomSheet(
+                                    backgroundColor: Colors.transparent,
+                                    isScrollControlled: true,
+                                    context: context,
+                                    builder: ((context) => ClaimedSheet()));
+                              },
                               icon: Icons.arrow_forward,
                             )),
-                        SizedBox(height: 10.h),
+                        SizedBox(height: 40.h),
                         // memu(),
+                        imageSlideView(),
+                        latestreview(),
                         SizedBox(height: 10.h),
+                        map(),
+                        SizedBox(height: 10.h),
+                        page(),
+
                         // offer()
                       ],
                     ),
@@ -377,6 +396,204 @@ class _RestaurantScreenState extends State<RestaurantScreen> {
           ],
         ),
       ],
+    );
+  }
+
+  Widget imageSlideView(){
+    return Padding(
+      padding: const EdgeInsets.only(top: 4,left: 8,right: 8,bottom: 4),
+      child: ImageSlideshow(
+
+        width: double.infinity,
+        initialPage: 0,
+        indicatorColor: Colors.teal,
+        indicatorBackgroundColor: Colors.teal.shade50,
+
+        children: [
+          ClipRRect(
+            borderRadius: BorderRadius.circular(10),
+            child:
+            Image.asset(
+              'assets/f1.jpg',
+              fit: BoxFit.cover,
+            ),
+          ),
+
+          ClipRRect(
+            borderRadius: BorderRadius.circular(10),
+            child:
+            Image.asset(
+              'assets/f2.jpg',
+              fit: BoxFit.cover,
+            ),
+          ),
+          ClipRRect(
+            borderRadius: BorderRadius.circular(10),
+            child:
+            Image.asset(
+              'assets/f3.jpg',
+              fit: BoxFit.cover,
+            ),
+          ),
+
+        ],
+        autoPlayInterval: 3000,
+        isLoop: true,
+      ),
+    );
+  }
+
+
+  Widget latestreview() {
+    return Container(
+      margin: EdgeInsets.only(left: 24.w, top: 32.h, right: 24.w),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            "Latest Reviews",
+            style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.bold),
+          ),
+          SizedBox(height: 10.h),
+          Container(
+            padding: EdgeInsets.all(10.r),
+            decoration: BoxDecoration(
+                border: Border.all(color: Colors.grey),
+                borderRadius: BorderRadius.circular(10.r)),
+            child: Column(
+              children: [
+                Row(
+                  children: [
+                    CircleAvatar(
+                      radius: 25.r,
+                    ),
+                    SizedBox(width: 10.w),
+                    Column(
+                      children: [
+                        Text("jhon Smith"),
+                        SizedBox(height: 5.h),
+                        Row(
+                          children: List.generate(
+                              5,
+                                  (index) => Icon(
+                                Icons.star,
+                                color: Colors.yellow,
+                                size: 15.r,
+                              )),
+                        )
+                      ],
+                    ),
+                  ],
+                ),
+                SizedBox(height: 5.h),
+                Text(
+                  "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+                  style: TextStyle(color: Colors.grey),
+                )
+              ],
+            ),
+          )
+        ],
+      ),
+    );
+  }
+
+  Widget map() {
+    return Container(
+      margin: EdgeInsets.only(left: 24.w, top: 32.h, right: 24.w),
+      height: 150.h,
+      width: double.infinity,
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(10.r),
+        child: Image.asset(
+          "assets/Screenshot 2022-09-14 at 12.31.21 PM.png",
+          fit: BoxFit.cover,
+        ),
+      ),
+    );
+  }
+
+  Widget page() {
+    return Container(
+      margin: EdgeInsets.only(left: 24.w, top: 32.h, right: 24.w),
+      child: Column(
+        children: [
+          Container(
+            decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.all(Radius.circular(20))
+            ),
+            child: ListTile(
+              tileColor: Colors.white,
+              leading: CircleAvatar(
+                child: Icon(Icons.facebook),
+              ),
+              trailing: Icon(Icons.arrow_forward_ios,),
+              title: Text("Facebook Page"),
+            ),
+          ),
+          SizedBox(height: 15.h),
+          Container(
+            decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.all(Radius.circular(20))
+            ),
+            child: ListTile(
+              tileColor: Colors.white,
+              leading: CircleAvatar(
+                child: Icon(Icons.facebook),
+              ),
+              trailing: Icon(Icons.arrow_forward_ios,),
+              title: Text("Visit website"),
+            ),
+          ),
+          SizedBox(height: 15.h),
+          Container(
+            decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.all(Radius.circular(20))
+            ),
+            child: ListTile(
+              tileColor: Colors.white,
+              leading: CircleAvatar(
+                child: Icon(Icons.facebook),
+              ),
+              trailing: Icon(Icons.arrow_forward_ios,),
+              title: Text("Privacy Policy"),
+            ),
+          ),
+          SizedBox(height: 15.h),
+          Container(
+            decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.all(Radius.circular(20))
+            ),
+            child: ListTile(
+              tileColor: Colors.white,
+              leading: CircleAvatar(
+                child: Icon(Icons.facebook),
+              ),
+              trailing: Icon(Icons.arrow_forward_ios,),
+              title: Text("How to claim?"),
+            ),
+          ),
+          SizedBox(height: 15.h),
+          Container(
+            decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.all(Radius.circular(20))
+            ),
+            child: ListTile(
+              tileColor: Colors.white,
+              leading: CircleAvatar(
+                child: Icon(Icons.facebook),
+              ),
+              trailing: Icon(Icons.arrow_forward_ios,),
+              title: Text("Help & Support"),
+            ),
+          ),
+        ],
+      ),
     );
   }
 

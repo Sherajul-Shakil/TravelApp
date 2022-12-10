@@ -7,8 +7,8 @@ import '../../utilites/route.dart';
 import '../restaurant _details/hoteldetails.dart';
 
 class HotelSearchPage extends StatefulWidget {
-  final String area;
-  const HotelSearchPage({Key? key, required this.area}) : super(key: key);
+ final String? area;
+  const HotelSearchPage({Key? key,this.area}) : super(key: key);
 
   @override
   State<HotelSearchPage> createState() => _HotelSearchPageState();

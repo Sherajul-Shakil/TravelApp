@@ -4,6 +4,7 @@ import 'package:travel_app_master/screens/restaurant%20_details/offer/offer_page
 import 'package:travel_app_master/screens/user_about/person.dart';
 
 import 'Search/search.dart';
+import 'explore/explore_page.dart';
 import 'home/home.dart';
 
 class NavigationScreen extends StatefulWidget {
@@ -52,7 +53,8 @@ class _NavigationScreenState extends State<NavigationScreen> {
         controller: pageController,
         children: [
           HomeScreen(),
-          SearchScreen(selectedcategory: 1),
+
+         SearchScreen(selectedcategory: 1),
           OfferScreen(),
           // ProfileScreen(),
           Container(),

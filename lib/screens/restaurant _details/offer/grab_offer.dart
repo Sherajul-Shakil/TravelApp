@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
+import 'package:travel_app_master/screens/restaurant%20_details/ButtomSheet/claimed.dart';
+import 'package:travel_app_master/screens/restaurant%20_details/ButtomSheet/contact_for_booking.dart';
 
 class GrabOffer extends StatefulWidget {
   // final HotelroomDatum data;
@@ -21,7 +23,11 @@ class _GrabOfferState extends State<GrabOffer> {
     // final locationprovider = Provider.of<Locationprovider>(context);
     return SingleChildScrollView(
       child: Container(
-        decoration: BoxDecoration(color: Color(0xFfF7F7F7)),
+        decoration: BoxDecoration(
+            color: Color(0xFfF7F7F7),
+            borderRadius: BorderRadius.only(topRight: Radius.circular(20),topLeft: Radius.circular(20)),
+        ),
+
         child: Column(
           children: [
             SizedBox(height: 25.h),
@@ -333,36 +339,56 @@ class _GrabOfferState extends State<GrabOffer> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       // if (locationprovider.distance >= 1.0)
-                      Container(
-                        height: 62.h,
-                        width: 170.w,
-                        alignment: Alignment.center,
-                        decoration: BoxDecoration(
-                            color: Color(0xFF08BA64).withOpacity(0.15),
-                            borderRadius: BorderRadius.circular(10.r)),
-                        child: Text(
-                          "Contact for Booking",
-                          style: TextStyle(
-                              color: Colors.green,
-                              fontSize: 16.sp,
-                              fontWeight: FontWeight.w500),
+                      InkWell(
+                         onTap: (){
+                           Navigator.pop(context);
+                           showModalBottomSheet(
+                               backgroundColor: Colors.transparent,
+                               isScrollControlled: true,
+                               context: context,
+                               builder: ((context) => ContactForBooking()));
+                         },
+                        child: Container(
+                          height: 62.h,
+                          width: 170.w,
+                          alignment: Alignment.center,
+                          decoration: BoxDecoration(
+                              color: Color(0xFF08BA64).withOpacity(0.15),
+                              borderRadius: BorderRadius.circular(10.r)),
+                          child: Text(
+                            "Contact for Booking",
+                            style: TextStyle(
+                                color: Colors.green,
+                                fontSize: 16.sp,
+                                fontWeight: FontWeight.w500),
+                          ),
                         ),
                       ),
                       SizedBox(width: 10.w),
                       // if (locationprovider.distance <= 1.0)
-                      Container(
-                        height: 62.h,
-                        width: 170.w,
-                        alignment: Alignment.center,
-                        decoration: BoxDecoration(
-                            color: Color(0xFF08BA64),
-                            borderRadius: BorderRadius.circular(10.r)),
-                        child: Text(
-                          "Claim Discount",
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 16.sp,
-                              fontWeight: FontWeight.w500),
+                      InkWell(
+                        onTap: (){
+                          Navigator.pop(context);
+                          showModalBottomSheet(
+                              backgroundColor: Colors.transparent,
+                              isScrollControlled: true,
+                              context: context,
+                              builder: ((context) => ClaimedSheet()));
+                        },
+                        child: Container(
+                          height: 62.h,
+                          width: 170.w,
+                          alignment: Alignment.center,
+                          decoration: BoxDecoration(
+                              color: Color(0xFF08BA64),
+                              borderRadius: BorderRadius.circular(10.r)),
+                          child: Text(
+                            "Claim Discount",
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 16.sp,
+                                fontWeight: FontWeight.w500),
+                          ),
                         ),
                       ),
                     ],

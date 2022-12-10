@@ -368,7 +368,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                                 horizontal: 15, vertical: 10),
                             decoration: BoxDecoration(
                                 color: preferlist.contains("Mountains")
-                                    ? Colors.indigo
+                                    ? Colors.green
                                     : Colors.white.withOpacity(0.40),
                                 borderRadius: BorderRadius.circular(20.r)),
                             child: Text(

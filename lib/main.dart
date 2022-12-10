@@ -39,15 +39,14 @@ class MyApp extends StatelessWidget {
           title: 'Travel App',
           // You can use the library anywhere in the app even in theme
           theme: ThemeData(
-            primarySwatch: Colors.blue,
+            primarySwatch: Colors.green,
             textTheme: Typography.englishLike2018.apply(fontSizeFactor: 1.sp),
           ),
           home: child,
         );
       },
-      child: NavigationScreen(),
+      child: SplashScreen(),
       // box.get('token') == null ? SplashScreen() : NavigationScreen(),
-      //2nd test
     );
   }
 }
