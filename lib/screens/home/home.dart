@@ -21,15 +21,12 @@ class _HomeScreenState extends State<HomeScreen> {
   TextEditingController searchController = TextEditingController();
   bool onPressed = false;
 
-
   List<String> sImage = [
     "assets/16taka.png",
     "assets/16taka.png",
     "assets/16taka.png",
     "assets/16taka.png",
   ];
-
-
 
   bool loading = false;
 
@@ -154,19 +151,21 @@ class _HomeScreenState extends State<HomeScreen> {
                                     isDense: true,
                                     contentPadding: EdgeInsets.all(10.r),
                                     filled: true,
-
                                     fillColor: Colors.white,
                                     suffixIcon: InkWell(
-                                      onTap: (){
-
-                                        String value=searchController.text.toString();
+                                      onTap: () {
+                                        String value =
+                                            searchController.text.toString();
 
                                         Navigator.push(
                                             context,
                                             MaterialPageRoute(
-                                              builder: (context) => SearchScreen(selectedcategory: 1,searchItem: value,),
+                                              builder: (context) =>
+                                                  SearchScreen(
+                                                selectedcategory: 1,
+                                                searchItem: value,
+                                              ),
                                             ));
-
                                       },
                                       child: Icon(
                                         Icons.arrow_forward,
@@ -250,51 +249,120 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget category() {
     // final provider = Provider.of<Hotelprovider>(context);
     // final pageprovider = Provider.of<PagecontrollProvider>(context);
-    return Container(
-      height: 90,
-      child: ListView.separated(
-        scrollDirection: Axis.horizontal,
-        padding: EdgeInsets.only(left: 24.w),
-        itemCount: 4,
-        itemBuilder: (BuildContext context, int index) {
-          // var data = provider.category!.data![index];
-          return InkWell(
-            onTap: () {
-
-              // setState(() {
-              //   pageprovider.categoryindex(index);
-              //   pageprovider.pageController.jumpToPage(1);
-              // });
-            },
-            child: Column(
-              children: [
-                Container(
-                  padding: EdgeInsets.all(10.r),
-                  height: 65.h,
-                  width: 80.w,
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(16.r)),
-                  child: Image.asset("assets/hotel.png")
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: Container(
+          height: 90,
+          child: Row(
+             mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8),
+                child: InkWell(
+                  onTap: () {},
+                  child: Column(
+                    children: [
+                      Container(
+                          padding: EdgeInsets.all(10.r),
+                          height: 65.h,
+                          width: 80.w,
+                          decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(16.r)),
+                          child: Image.asset("assets/hotel.png")),
+                      SizedBox(height: 5.h),
+                      Text(
+                        "Hotel/Resot",
+                        style: TextStyle(
+                            color: Color(0xFf9C9C9C),
+                            fontSize: 13.sp,
+                            fontWeight: FontWeight.w400),
+                      )
+                    ],
+                  ),
                 ),
-                SizedBox(height: 5.h),
-                Text(
-                  "Hotel/Resot",
-                  style: TextStyle(
-                      color: Color(0xFf9C9C9C),
-                      fontSize: 13.sp,
-                      fontWeight: FontWeight.w400),
-                )
-              ],
-            ),
-          );
-        },
-        separatorBuilder: (BuildContext context, int index) {
-          return SizedBox(
-            width: 20,
-          );
-        },
-      ),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8),
+                child: InkWell(
+                  onTap: () {},
+                  child: Column(
+                    children: [
+                      Container(
+                          padding: EdgeInsets.all(10.r),
+                          height: 65.h,
+                          width: 80.w,
+                          decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(16.r)),
+                          child: Image.asset("assets/restaurant.png")),
+                      SizedBox(height: 5.h),
+                      Text(
+                        "Restaurant",
+                        style: TextStyle(
+                            color: Color(0xFf9C9C9C),
+                            fontSize: 13.sp,
+                            fontWeight: FontWeight.w400),
+                      )
+                    ],
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8),
+                child: InkWell(
+                  onTap: () {},
+                  child: Column(
+                    children: [
+                      Container(
+                          padding: EdgeInsets.all(10.r),
+                          height: 65.h,
+                          width: 80.w,
+                          decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(16.r)),
+                          child: Image.asset("assets/cruise.png")),
+                      SizedBox(height: 5.h),
+                      Text(
+                        "Cruise",
+                        style: TextStyle(
+                            color: Color(0xFf9C9C9C),
+                            fontSize: 13.sp,
+                            fontWeight: FontWeight.w400),
+                      )
+                    ],
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8),
+                child: InkWell(
+                  onTap: () {},
+                  child: Column(
+                    children: [
+                      Container(
+                          padding: EdgeInsets.all(10.r),
+                          height: 65.h,
+                          width: 80.w,
+                          decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(16.r)),
+                          child: Image.asset("assets/flight.png")),
+                      SizedBox(height: 5.h),
+                      Text(
+                        "Flight",
+                        style: TextStyle(
+                            color: Color(0xFf9C9C9C),
+                            fontSize: 13.sp,
+                            fontWeight: FontWeight.w400),
+                      )
+                    ],
+                  ),
+                ),
+              ),
+
+            ],
+          )),
     );
   }
 
@@ -439,66 +507,110 @@ class _HomeScreenState extends State<HomeScreen> {
                               height: 144.h,
                               width: 105.w,
                               child: ClipRRect(
-                                borderRadius: BorderRadius.circular(10.r),
+                                borderRadius: BorderRadius.only(
+                                    topLeft: Radius.circular(10.r),
+                                    bottomLeft: Radius.circular(10.r)),
                                 child: Image.network(
-                                  "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8aG90ZWx8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60",
+                                  "https://media-cdn.tripadvisor.com/media/photo-s/15/99/54/30/swimming-pool.jpg",
                                   // data.hotelImages!,
                                   fit: BoxFit.cover,
                                 ),
                               )),
                           SizedBox(width: 10.w),
-                          Container(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(
-                                  "data.name",
-                                  style: TextStyle(
-                                      fontSize: 18.sp,
-                                      fontWeight: FontWeight.w500),
-                                ),
-                                SizedBox(height: 8.h),
-                                Row(
-                                  children: [
-                                    Icon(Icons.location_on, size: 15),
-                                    Text(
-                                      "Cox’s Bazaar",
-                                      style: TextStyle(
-                                          fontSize: 13.sp,
-                                          color: Colors.grey,
-                                          fontWeight: FontWeight.w400),
-                                    ),
-                                  ],
-                                ),
-                                SizedBox(height: 8.h),
-                                Text("hotelTags.name"),
-                                SizedBox(height: 20.h),
-                                RatingBar.builder(
-                                  itemSize: 20.r,
-                                  initialRating: 3,
-                                  minRating: 1,
-                                  direction: Axis.horizontal,
-                                  allowHalfRating: true,
-                                  itemCount: 5,
-                                  itemPadding:
-                                      EdgeInsets.symmetric(horizontal: 1.0),
-                                  itemBuilder: (context, _) => Icon(Icons.star,
-                                      size: 5, color: Colors.orangeAccent),
-                                  onRatingUpdate: (rating) {
-                                    print(rating);
-                                  },
-                                ),
-                                Text(
-                                  "10 review",
-                                  style: TextStyle(
-                                      fontSize: 11.sp,
-                                      fontWeight: FontWeight.w200),
-                                )
-                              ],
+                          Expanded(
+                            child: Container(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    "Hotel Name Here jsdhkj skdn dkjsd sdknsd ",
+                                    maxLines: 1,
+                                    style: TextStyle(
+                                        fontSize: 18.sp,
+                                        fontWeight: FontWeight.w500),
+                                  ),
+                                  SizedBox(height: 8.h),
+                                  Row(
+                                    children: [
+                                      Icon(Icons.location_on, size: 15),
+                                      Text(
+                                        "Cox’s Bazaar",
+                                        style: TextStyle(
+                                            fontSize: 13.sp,
+                                            color: Colors.grey,
+                                            fontWeight: FontWeight.w400),
+                                      ),
+                                    ],
+                                  ),
+                                  SizedBox(height: 8.h),
+                                  Row(
+                                    children: [
+                                      Container(
+                                        decoration: BoxDecoration(
+                                          color: Colors.grey.shade200,
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(20)),
+                                        ),
+                                        child: Padding(
+                                          padding: const EdgeInsets.symmetric(
+                                              horizontal: 8),
+                                          child: Text(
+                                            "Hotel",
+                                            style: TextStyle(
+                                                color: Colors.black54),
+                                          ),
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        width: 5,
+                                      ),
+                                      Container(
+                                        decoration: BoxDecoration(
+                                          color: Colors.grey.shade200,
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(20)),
+                                        ),
+                                        child: Padding(
+                                          padding: const EdgeInsets.symmetric(
+                                              horizontal: 8),
+                                          child: Text(
+                                            "Restaurant",
+                                            style: TextStyle(
+                                                color: Colors.black54),
+                                          ),
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                  SizedBox(height: 10.h),
+                                  RatingBar.builder(
+                                    itemSize: 16.r,
+                                    initialRating: 3,
+                                    minRating: 1,
+                                    direction: Axis.horizontal,
+                                    allowHalfRating: true,
+                                    itemCount: 5,
+                                    itemPadding:
+                                        EdgeInsets.symmetric(horizontal: 1.0),
+                                    itemBuilder: (context, _) => Icon(
+                                        Icons.star,
+                                        size: 5,
+                                        color: Colors.orangeAccent),
+                                    onRatingUpdate: (rating) {
+                                      print(rating);
+                                    },
+                                  ),
+                                  Text(
+                                    "10 review",
+                                    style: TextStyle(
+                                        fontSize: 11.sp,
+                                        fontWeight: FontWeight.w300),
+                                  )
+                                ],
+                              ),
                             ),
                           ),
-                          Spacer(),
                           Container(
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.end,
@@ -543,14 +655,14 @@ class _HomeScreenState extends State<HomeScreen> {
                                       ),
                                     ),
                                     Text(
-                                      "offerPrice tk",
+                                      "600" + " tk",
                                       style: TextStyle(
                                           fontSize: 15.sp,
                                           fontWeight: FontWeight.w700,
                                           color: Color(0xff08BA64)),
                                     ),
                                     Text(
-                                      "data.price tk",
+                                      "200" + " tk",
                                       style: TextStyle(
                                           fontSize: 11.sp,
                                           fontWeight: FontWeight.w300,

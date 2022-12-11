@@ -78,6 +78,8 @@ class _AvailableofferButtomSheetState extends State<AvailableofferButtomSheet> {
     );
   }
 
+
+
   Widget resturentbox() {
     return Container(
       margin: EdgeInsets.only(left: 24.w, right: 24.w, bottom: 10.h),
@@ -88,144 +90,148 @@ class _AvailableofferButtomSheetState extends State<AvailableofferButtomSheet> {
         color: Colors.white,
         borderRadius: BorderRadius.circular(10.r),
       ),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(
-              height: 144.h,
-              width: 105.w,
-              child: Image.asset(
-                "assets/segull.png",
-                fit: BoxFit.cover,
-              )),
-          SizedBox(width: 10.w),
-          Container(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  "Seagull Hotel",
-                  style:
-                      TextStyle(fontSize: 18.sp, fontWeight: FontWeight.w500),
-                ),
-                SizedBox(height: 8.h),
-                Row(
+      child: InkWell(
+        onTap: () {
+          showModalBottomSheet(
+              backgroundColor: Colors.transparent,
+              isScrollControlled: true,
+              context: context,
+              builder: ((context) => GrabOffer()));
+        },
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+                height: 144.h,
+                width: 105.w,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.only(topLeft: Radius.circular(10.r),bottomLeft: Radius.circular(10.r)),
+                  child: Image.network(
+                    "https://static.theprint.in/wp-content/uploads/2022/10/Hotel.jpg?compress=true&quality=80&w=376&dpr=2.6",
+                    // data.hotelImages!,
+                    fit: BoxFit.cover,
+                  ),
+                )),
+            SizedBox(width: 10.w),
+            Expanded(
+              child: Container(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Icon(Icons.location_on, size: 15),
                     Text(
-                      "Cox’s Bazaar",
+                      "Double Room",maxLines: 1,
                       style: TextStyle(
-                          fontSize: 13.sp,
-                          color: Colors.grey,
-                          fontWeight: FontWeight.w400),
+                          fontSize: 18.sp,
+                          fontWeight: FontWeight.w500),
                     ),
-                  ],
-                ),
-                SizedBox(height: 8.h),
-                Row(
-                  children: [
-                    Text(
-                      "Hotel",
-                      style: TextStyle(color: Colors.grey),
-                    ),
-                    SizedBox(
-                      width: 10,
-                    ),
-                    Text(
-                      "Restaurent",
-                      style: TextStyle(color: Colors.grey),
-                    ),
-                  ],
-                ),
-                SizedBox(height: 20.h),
-                RatingBar.builder(
-                  itemSize: 20.r,
-                  initialRating: 3,
-                  minRating: 1,
-                  direction: Axis.horizontal,
-                  allowHalfRating: true,
-                  itemCount: 5,
-                  itemPadding: EdgeInsets.symmetric(horizontal: 1.0),
-                  itemBuilder: (context, _) =>
-                      Icon(Icons.star, size: 5, color: Colors.orangeAccent),
-                  onRatingUpdate: (rating) {
-                    print(rating);
-                  },
-                ),
-                Text(
-                  "131 review",
-                  style:
-                      TextStyle(fontSize: 11.sp, fontWeight: FontWeight.w200),
-                )
-              ],
-            ),
-          ),
-          Spacer(),
-          Container(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                Container(
-                  height: 36.h,
-                  width: 28.w,
-                  child: Stack(
-                    fit: StackFit.expand,
-                    children: [
-                      Image.asset(
-                        "assets/discount_badge.png",
-                        scale: 1.1,
-                      ),
-                      Positioned(
-                        top: 10.h,
-                        right: 0.w,
-                        child: Text(
-                          "50%",
-                          style: TextStyle(
-                            fontSize: 13.sp,
-                            fontWeight: FontWeight.w700,
-                            // fontWeight: FontWeight.w700,
-                            color: Colors.white,
+                    SizedBox(height: 12.h),
+                    Text("A luxurious 2 bed room. With amazing services and luxury... ",maxLines: 2,style: TextStyle(color: Colors.black38),),
+                    SizedBox(height: 12.h),
+
+                    Row(
+                      children: [
+                        Container(
+
+                          decoration: BoxDecoration(
+                            color: Colors.grey.shade200,
+
+                            borderRadius: BorderRadius.all(Radius.circular(20)),
+                          ),
+                          child:  Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 8),
+                            child: Text("2 Bed",style: TextStyle(color: Colors.black54),),
                           ),
                         ),
-                      ),
-                    ],
-                  ),
-                ),
-                SizedBox(height: 40.h),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    Text(
-                      "available offer",
-                      style: TextStyle(
-                        fontSize: 10.sp,
-                        fontWeight: FontWeight.w300,
-                        // fontWeight: FontWeight.w700,
-                        color: Colors.grey,
-                      ),
-                    ),
-                    Text(
-                      "6,000 tk",
-                      style: TextStyle(
-                          fontSize: 15.sp,
-                          fontWeight: FontWeight.w700,
-                          color: Color(0xff08BA64)),
-                    ),
-                    Text(
-                      "12,000 tk",
-                      style: TextStyle(
-                          fontSize: 11.sp,
-                          fontWeight: FontWeight.w300,
-                          decoration: TextDecoration.lineThrough,
-                          color: Color(0xff08BA64)),
+                        SizedBox(width: 5,),
+                        Container(
+
+                          decoration: BoxDecoration(
+                            color: Colors.grey.shade200,
+
+                            borderRadius: BorderRadius.all(Radius.circular(20)),
+                          ),
+                          child:  Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 8),
+                            child: Text("Night Stay",style: TextStyle(color: Colors.black54),),
+                          ),
+                        )
+
+                      ],
                     ),
                   ],
-                )
-              ],
+                ),
+              ),
             ),
-          ),
-        ],
+
+            Container(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  Container(
+                    height: 36.h,
+                    width: 28.w,
+                    child: Stack(
+                      fit: StackFit.expand,
+                      children: [
+                        Image.asset(
+                          "assets/discount_badge.png",
+                          scale: 1.1,
+                        ),
+                        Positioned(
+                          top: 10.h,
+                          right: 0.w,
+                          child: Text(
+                            "30%",
+                            style: TextStyle(
+                              fontSize: 13.sp,
+                              fontWeight: FontWeight.w700,
+                              // fontWeight: FontWeight.w700,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  SizedBox(height: 40.h),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      Text(
+                        "available offer",
+                        style: TextStyle(
+                          fontSize: 10.sp,
+                          fontWeight: FontWeight.w300,
+                          // fontWeight: FontWeight.w700,
+                          color: Colors.grey,
+                        ),
+                      ),
+                      Text(
+                        "1800"+" tk",
+                        style: TextStyle(
+                            fontSize: 15.sp,
+                            fontWeight: FontWeight.w700,
+                            color: Color(0xff08BA64)),
+                      ),
+                      Text(
+                        "400"+" tk",
+                        style: TextStyle(
+                            fontSize: 11.sp,
+                            fontWeight: FontWeight.w300,
+                            decoration:
+                            TextDecoration.lineThrough,
+                            color: Color(0xff08BA64)),
+                      ),
+                    ],
+                  )
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
+
 }

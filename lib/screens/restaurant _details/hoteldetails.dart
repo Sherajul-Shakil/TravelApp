@@ -448,6 +448,7 @@ class _HoteldetailsPage2State extends State<HoteldetailsPage2> {
                 SliverToBoxAdapter(child: latestreview()),
                 SliverToBoxAdapter(child: map()),
                 SliverToBoxAdapter(child: page())
+
               ],
             ),
     );
@@ -491,61 +492,66 @@ class _HoteldetailsPage2State extends State<HoteldetailsPage2> {
             Container(
                 height: 144.h,
                 width: 105.w,
-                child: Image.asset(
-                  "assets/segull.png",
-                  fit: BoxFit.cover,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.only(topLeft: Radius.circular(10.r),bottomLeft: Radius.circular(10.r)),
+                  child: Image.network(
+                    "https://img1.10bestmedia.com/Images/Photos/378649/Park-Hyatt-New-York-Manhattan-Sky-Suite-Master-Bedroom-low-res_54_990x660.jpg",
+                    // data.hotelImages!,
+                    fit: BoxFit.cover,
+                  ),
                 )),
             SizedBox(width: 10.w),
-            Container(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    "roomTitle!",
-                    style:
-                        TextStyle(fontSize: 18.sp, fontWeight: FontWeight.w500),
-                  ),
-                  SizedBox(height: 8.h),
-                  SizedBox(height: 8.h),
-                  Row(
-                    children: [
-                      Text(
-                        "Hotel",
-                        style: TextStyle(color: Colors.grey),
-                      ),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      Text(
-                        "Restaurent",
-                        style: TextStyle(color: Colors.grey),
-                      ),
-                    ],
-                  ),
-                  SizedBox(height: 20.h),
-                  RatingBar.builder(
-                    itemSize: 20.r,
-                    initialRating: 3,
-                    minRating: 1,
-                    direction: Axis.horizontal,
-                    allowHalfRating: true,
-                    itemCount: 5,
-                    itemPadding: EdgeInsets.symmetric(horizontal: 1.0),
-                    itemBuilder: (context, _) =>
-                        Icon(Icons.star, size: 5, color: Colors.orangeAccent),
-                    onRatingUpdate: (rating) {
-                      print(rating);
-                    },
-                  ),
-                  Text(
-                    "131 review",
-                    style:
-                        TextStyle(fontSize: 11.sp, fontWeight: FontWeight.w200),
-                  )
-                ],
+            Expanded(
+              child: Container(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "Single Room",maxLines: 1,
+                      style: TextStyle(
+                          fontSize: 18.sp,
+                          fontWeight: FontWeight.w500),
+                    ),
+                    SizedBox(height: 12.h),
+                     Text("A luxurious 2 bed room. With amazing services and luxury... ",maxLines: 2,style: TextStyle(color: Colors.black38),),
+                    SizedBox(height: 12.h),
+
+                    Row(
+                      children: [
+                        Container(
+
+                          decoration: BoxDecoration(
+                            color: Colors.grey.shade200,
+
+                            borderRadius: BorderRadius.all(Radius.circular(20)),
+                          ),
+                          child:  Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 8),
+                            child: Text("2 Bed",style: TextStyle(color: Colors.black54),),
+                          ),
+                        ),
+                        SizedBox(width: 5,),
+                        Container(
+
+                          decoration: BoxDecoration(
+                            color: Colors.grey.shade200,
+
+                            borderRadius: BorderRadius.all(Radius.circular(20)),
+                          ),
+                          child:  Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 8),
+                            child: Text("Night Stay",style: TextStyle(color: Colors.black54),),
+                          ),
+                        )
+
+                      ],
+                    ),
+                  ],
+                ),
               ),
             ),
-            Spacer(),
+
             Container(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.end,
@@ -564,7 +570,7 @@ class _HoteldetailsPage2State extends State<HoteldetailsPage2> {
                           top: 10.h,
                           right: 0.w,
                           child: Text(
-                            "10%",
+                            "30%",
                             style: TextStyle(
                               fontSize: 13.sp,
                               fontWeight: FontWeight.w700,
@@ -590,18 +596,19 @@ class _HoteldetailsPage2State extends State<HoteldetailsPage2> {
                         ),
                       ),
                       Text(
-                        "500 tk",
+                        "1800"+" tk",
                         style: TextStyle(
                             fontSize: 15.sp,
                             fontWeight: FontWeight.w700,
                             color: Color(0xff08BA64)),
                       ),
                       Text(
-                        "roomPrice tk",
+                        "400"+" tk",
                         style: TextStyle(
                             fontSize: 11.sp,
                             fontWeight: FontWeight.w300,
-                            decoration: TextDecoration.lineThrough,
+                            decoration:
+                            TextDecoration.lineThrough,
                             color: Color(0xff08BA64)),
                       ),
                     ],
@@ -765,45 +772,80 @@ class _HoteldetailsPage2State extends State<HoteldetailsPage2> {
       ),
     );
   }
-
   Widget page() {
     return Container(
       margin: EdgeInsets.only(left: 24.w, top: 32.h, right: 24.w),
       child: Column(
         children: [
-          ListTile(
-            tileColor: Colors.white,
-            leading: CircleAvatar(
-              child: Icon(Icons.facebook),
+          Container(
+            decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.all(Radius.circular(20))
             ),
-            title: Text("Facebook Page"),
+            child: ListTile(
+              tileColor: Colors.white,
+              leading: Image.asset("assets/facebook_white.png",height: 30,),
+              trailing: Icon(Icons.arrow_forward_ios,color: Colors.black26,),
+              title: Text("Facebook Page",style: TextStyle(color: Colors.black54),),
+            ),
           ),
-          SizedBox(height: 5.h),
-          ListTile(
-            tileColor: Colors.white,
-            leading: CircleAvatar(
-              child: Icon(Icons.facebook),
+          SizedBox(height: 15.h),
+          Container(
+            decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.all(Radius.circular(20))
             ),
-            title: Text("Facebook Page"),
+            child: ListTile(
+              tileColor: Colors.white,
+              leading:  Image.asset("assets/world.png",height: 30,),
+              trailing: Icon(Icons.arrow_forward_ios,color: Colors.black26,),
+              title: Text("Visit website",style: TextStyle(color: Colors.black54),),
+            ),
           ),
-          SizedBox(height: 5.h),
-          ListTile(
-            tileColor: Colors.white,
-            leading: CircleAvatar(
-              child: Icon(Icons.facebook),
+          SizedBox(height: 15.h),
+          Container(
+            decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.all(Radius.circular(20))
             ),
-            title: Text("Facebook Page"),
+            child: ListTile(
+              tileColor: Colors.white,
+              leading:  Image.asset("assets/privacy.png",height: 30,),
+              trailing: Icon(Icons.arrow_forward_ios,color: Colors.black26,),
+              title: Text("Privacy Policy",style: TextStyle(color: Colors.black54),),
+            ),
           ),
-          SizedBox(height: 5.h),
-          ListTile(
-            tileColor: Colors.white,
-            leading: CircleAvatar(
-              child: Icon(Icons.facebook),
+          SizedBox(height: 15.h),
+          Container(
+            decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.all(Radius.circular(20))
             ),
-            title: Text("Facebook Page"),
-          )
+            child: ListTile(
+              tileColor: Colors.white,
+              leading:  Image.asset("assets/clam.png",height: 30,),
+              trailing: Icon(Icons.arrow_forward_ios,color: Colors.black26,),
+              title: Text("How to claim?",style: TextStyle(color: Colors.black54),),
+            ),
+          ),
+          SizedBox(height: 15.h),
+          Container(
+            decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.all(Radius.circular(20))
+            ),
+            child: ListTile(
+              tileColor: Colors.white,
+              leading:  Image.asset("assets/help.png",height: 30,),
+              trailing: Icon(Icons.arrow_forward_ios,color: Colors.black26,),
+              title: Text("Help & Support",style: TextStyle(color: Colors.black54),),
+            ),
+          ),
+          SizedBox(height: 30.h),
+
         ],
       ),
     );
   }
+
 }
