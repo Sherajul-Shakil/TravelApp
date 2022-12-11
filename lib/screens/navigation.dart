@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:travel_app_master/screens/restaurant%20_details/offer/offer_page.dart';
 import 'package:travel_app_master/screens/user_about/person.dart';
+import 'package:travel_app_master/screens/world/world_page.dart';
 
 import 'Search/search.dart';
 import 'explore/explore_page.dart';
@@ -57,7 +58,7 @@ class _NavigationScreenState extends State<NavigationScreen> {
          SearchScreen(selectedcategory: 1),
           OfferScreen(),
           // ProfileScreen(),
-          Container(),
+          WorldPage(),
           PersonScreen()
         ],
       ),

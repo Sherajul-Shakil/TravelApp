@@ -57,10 +57,8 @@ class _ContactForBookingState extends State<ContactForBooking> {
                     ),
                     child: ListTile(
                       tileColor: Colors.white,
-                      leading: CircleAvatar(
-                        child: Icon(Icons.facebook),
-                      ),
-                      trailing: Icon(Icons.arrow_forward_ios,color: Colors.black54,),
+                      leading: Image.asset("assets/facebook_white.png",height: 30,),
+                      trailing: Icon(Icons.arrow_forward_ios,color: Colors.black26,),
                       title: Text("Facebook Page",style: TextStyle(color: Colors.black54),),
                     ),
                   ),
@@ -72,10 +70,8 @@ class _ContactForBookingState extends State<ContactForBooking> {
                     ),
                     child: ListTile(
                       tileColor: Colors.white,
-                      leading: CircleAvatar(
-                        child: Icon(Icons.facebook),
-                      ),
-                      trailing: Icon(Icons.arrow_forward_ios,color: Colors.black54,),
+                      leading:  Image.asset("assets/world.png",height: 30,),
+                      trailing: Icon(Icons.arrow_forward_ios,color: Colors.black26,),
                       title: Text("Visit website",style: TextStyle(color: Colors.black54),),
                     ),
                   ),
@@ -87,14 +83,11 @@ class _ContactForBookingState extends State<ContactForBooking> {
                     ),
                     child: ListTile(
                       tileColor: Colors.white,
-                      leading: CircleAvatar(
-                        child: Icon(Icons.email),
-                      ),
-                      trailing: Icon(Icons.arrow_forward_ios,color: Colors.black54,),
-                      title: Text("Send Email",style: TextStyle(color: Colors.black54),),
+                      leading:  Icon(Icons.email_outlined,size: 30,),
+                      trailing: Icon(Icons.arrow_forward_ios,color: Colors.black26,),
+                      title: Text("Privacy Policy",style: TextStyle(color: Colors.black54),),
                     ),
                   ),
-                  SizedBox(height: 5.h),
                   Divider(
                     color: Colors.grey.withOpacity(0.1),
                     thickness: 1,

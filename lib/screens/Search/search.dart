@@ -702,61 +702,100 @@ DateTime selectedDate = DateTime.now();
                   Container(
                       height: 144.h,
                       width: 105.w,
-                      child: Image.network(
-                        "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8aG90ZWx8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60",
-                        // data!.hotelImages!,
-                        fit: BoxFit.cover,
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.only(topLeft: Radius.circular(10.r),bottomLeft: Radius.circular(10.r)),
+                        child: Image.network(
+                          "https://media-cdn.tripadvisor.com/media/photo-s/15/99/54/30/swimming-pool.jpg",
+                          // data.hotelImages!,
+                          fit: BoxFit.cover,
+                        ),
                       )),
                   SizedBox(width: 10.w),
-                  Container(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          "data.name",
-                          style: TextStyle(
-                              fontSize: 18.sp, fontWeight: FontWeight.w500),
-                        ),
-                        SizedBox(height: 8.h),
-                        Row(
-                          children: [
-                            Icon(Icons.location_on, size: 15),
-                            Text(
-                              "Cox’s Bazaar",
-                              style: TextStyle(
-                                  fontSize: 13.sp,
-                                  color: Colors.grey,
-                                  fontWeight: FontWeight.w400),
-                            ),
-                          ],
-                        ),
-                        SizedBox(height: 8.h),
-                        Text("data.hotelTags[0].name"),
-                        SizedBox(height: 20.h),
-                        RatingBar.builder(
-                          itemSize: 20.r,
-                          initialRating: 3,
-                          minRating: 1,
-                          direction: Axis.horizontal,
-                          allowHalfRating: true,
-                          itemCount: 5,
-                          itemPadding: EdgeInsets.symmetric(horizontal: 1.0),
-                          itemBuilder: (context, _) => Icon(Icons.star,
-                              size: 5, color: Colors.orangeAccent),
-                          onRatingUpdate: (rating) {
-                            print(rating);
-                          },
-                        ),
-                        Text(
-                          "data.hotelRatings.length review",
-                          style: TextStyle(
-                              fontSize: 11.sp, fontWeight: FontWeight.w200),
-                        )
-                      ],
+                  Expanded(
+                    child: Container(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            "Hotel Name Here jsdhkj skdn dkjsd sdknsd ",maxLines: 1,
+                            style: TextStyle(
+                                fontSize: 18.sp,
+                                fontWeight: FontWeight.w500),
+                          ),
+                          SizedBox(height: 8.h),
+                          Row(
+                            children: [
+                              Icon(Icons.location_on, size: 15),
+                              Text(
+                                "Cox’s Bazaar",
+                                style: TextStyle(
+                                    fontSize: 13.sp,
+                                    color: Colors.grey,
+                                    fontWeight: FontWeight.w400),
+                              ),
+                            ],
+                          ),
+                          SizedBox(height: 8.h),
+
+                          Row(
+                            children: [
+                              Container(
+
+                                decoration: BoxDecoration(
+                                  color: Colors.grey.shade200,
+
+                                  borderRadius: BorderRadius.all(Radius.circular(20)),
+                                ),
+                                child:  Padding(
+                                  padding: const EdgeInsets.symmetric(horizontal: 8),
+                                  child: Text("Hotel",style: TextStyle(color: Colors.black54),),
+                                ),
+                              ),
+                              SizedBox(width: 5,),
+                              Container(
+
+                                decoration: BoxDecoration(
+                                  color: Colors.grey.shade200,
+
+                                  borderRadius: BorderRadius.all(Radius.circular(20)),
+                                ),
+                                child:  Padding(
+                                  padding: const EdgeInsets.symmetric(horizontal: 8),
+                                  child: Text("Restaurant",style: TextStyle(color: Colors.black54),),
+                                ),
+                              )
+
+                            ],
+                          ),
+
+                          SizedBox(height: 10.h),
+                          RatingBar.builder(
+                            itemSize: 16.r,
+                            initialRating: 3,
+                            minRating: 1,
+                            direction: Axis.horizontal,
+                            allowHalfRating: true,
+                            itemCount: 5,
+                            itemPadding:
+                            EdgeInsets.symmetric(horizontal: 1.0),
+                            itemBuilder: (context, _) => Icon(Icons.star,
+                                size: 5, color: Colors.orangeAccent),
+                            onRatingUpdate: (rating) {
+                              print(rating);
+                            },
+                          ),
+                          Text(
+                            "10 review",
+                            style: TextStyle(
+                                fontSize: 11.sp,
+                                fontWeight: FontWeight.w300),
+                          )
+                        ],
+                      ),
                     ),
                   ),
-                  Spacer(),
+
                   Container(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.end,
@@ -775,7 +814,7 @@ DateTime selectedDate = DateTime.now();
                                 top: 10.h,
                                 right: 0.w,
                                 child: Text(
-                                  "data.discount%",
+                                  "30%",
                                   style: TextStyle(
                                     fontSize: 13.sp,
                                     fontWeight: FontWeight.w700,
@@ -801,18 +840,19 @@ DateTime selectedDate = DateTime.now();
                               ),
                             ),
                             Text(
-                              "data.offerPrice tk",
+                              "600"+" tk",
                               style: TextStyle(
                                   fontSize: 15.sp,
                                   fontWeight: FontWeight.w700,
                                   color: Color(0xff08BA64)),
                             ),
                             Text(
-                              "data.price tk",
+                              "200"+" tk",
                               style: TextStyle(
                                   fontSize: 11.sp,
                                   fontWeight: FontWeight.w300,
-                                  decoration: TextDecoration.lineThrough,
+                                  decoration:
+                                  TextDecoration.lineThrough,
                                   color: Color(0xff08BA64)),
                             ),
                           ],
@@ -854,60 +894,81 @@ DateTime selectedDate = DateTime.now();
                   Container(
                       height: 144.h,
                       width: 105.w,
-                      child: Image.network(
-                        "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
-                        fit: BoxFit.cover,
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.only(topLeft: Radius.circular(10.r),bottomLeft: Radius.circular(10.r)),
+                        child: Image.network(
+                          "https://media-cdn.tripadvisor.com/media/photo-s/05/5d/3d/36/getlstd-property-photo.jpg",
+                          // data.hotelImages!,
+                          fit: BoxFit.cover,
+                        ),
                       )),
                   SizedBox(width: 10.w),
-                  Container(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          "restaurantName",
-                          style: TextStyle(
-                              fontSize: 18.sp, fontWeight: FontWeight.w500),
-                        ),
-                        SizedBox(height: 8.h),
-                        Row(
-                          children: [
-                            Icon(Icons.location_on, size: 15),
-                            Text(
-                              "Cox’s Bazaar",
-                              style: TextStyle(
-                                  fontSize: 13.sp,
-                                  color: Colors.grey,
-                                  fontWeight: FontWeight.w400),
+                  Expanded(
+                    child: Container(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            "Restaurant Name",maxLines: 1,
+                            style: TextStyle(
+                                fontSize: 18.sp,
+                                fontWeight: FontWeight.w500),
+                          ),
+                          SizedBox(height: 8.h),
+                          Row(
+                            children: [
+                              Icon(Icons.location_on, size: 15),
+                              Text(
+                                "Cox’s Bazaar",
+                                style: TextStyle(
+                                    fontSize: 13.sp,
+                                    color: Colors.grey,
+                                    fontWeight: FontWeight.w400),
+                              ),
+                            ],
+                          ),
+                          SizedBox(height: 8.h),
+
+                          Container(
+                            decoration: BoxDecoration(
+                              color: Colors.grey.shade200,
+
+                              borderRadius: BorderRadius.all(Radius.circular(20)),
                             ),
-                          ],
-                        ),
-                        SizedBox(height: 8.h),
-                        Text("data.restaurantTags!"),
-                        SizedBox(height: 20.h),
-                        RatingBar.builder(
-                          itemSize: 20.r,
-                          initialRating: 3,
-                          minRating: 1,
-                          direction: Axis.horizontal,
-                          allowHalfRating: true,
-                          itemCount: 5,
-                          itemPadding: EdgeInsets.symmetric(horizontal: 1.0),
-                          itemBuilder: (context, _) => Icon(Icons.star,
-                              size: 5, color: Colors.orangeAccent),
-                          onRatingUpdate: (rating) {
-                            print(rating);
-                          },
-                        ),
-                        Text(
-                          "${0} review",
-                          style: TextStyle(
-                              fontSize: 11.sp, fontWeight: FontWeight.w200),
-                        )
-                      ],
+                            child:  Padding(
+                              padding: const EdgeInsets.symmetric(horizontal: 8),
+                              child: Text("Restaurant",style: TextStyle(color: Colors.black54),),
+                            ),
+                          ),
+
+                          SizedBox(height: 10.h),
+                          RatingBar.builder(
+                            itemSize: 16.r,
+                            initialRating: 3,
+                            minRating: 1,
+                            direction: Axis.horizontal,
+                            allowHalfRating: true,
+                            itemCount: 5,
+                            itemPadding:
+                            EdgeInsets.symmetric(horizontal: 1.0),
+                            itemBuilder: (context, _) => Icon(Icons.star,
+                                size: 5, color: Colors.orangeAccent),
+                            onRatingUpdate: (rating) {
+                              print(rating);
+                            },
+                          ),
+                          Text(
+                            "10 review",
+                            style: TextStyle(
+                                fontSize: 11.sp,
+                                fontWeight: FontWeight.w300),
+                          )
+                        ],
+                      ),
                     ),
                   ),
-                  Spacer(),
+
                   Container(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.end,
@@ -926,7 +987,7 @@ DateTime selectedDate = DateTime.now();
                                 top: 10.h,
                                 right: 0.w,
                                 child: Text(
-                                  "10%",
+                                  "30%",
                                   style: TextStyle(
                                     fontSize: 13.sp,
                                     fontWeight: FontWeight.w700,
@@ -952,18 +1013,19 @@ DateTime selectedDate = DateTime.now();
                               ),
                             ),
                             Text(
-                              "${"500"} tk",
+                              "600"+" tk",
                               style: TextStyle(
                                   fontSize: 15.sp,
                                   fontWeight: FontWeight.w700,
                                   color: Color(0xff08BA64)),
                             ),
                             Text(
-                              "${"700"} tk",
+                              "200"+" tk",
                               style: TextStyle(
                                   fontSize: 11.sp,
                                   fontWeight: FontWeight.w300,
-                                  decoration: TextDecoration.lineThrough,
+                                  decoration:
+                                  TextDecoration.lineThrough,
                                   color: Color(0xff08BA64)),
                             ),
                           ],
