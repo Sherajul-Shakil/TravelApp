@@ -48,7 +48,7 @@ class MyApp extends StatelessWidget {
           home: child,
         );
       },
-      child: RegistrationScreen(),
+      child: LogInScreen(),
       // box.get('token') == null ? SplashScreen() : NavigationScreen(),
     );
   }

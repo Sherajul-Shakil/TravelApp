@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:travel_app_master/core/network_helper/app_url.dart';
 import 'package:travel_app_master/core/network_helper/network_helper.dart';
+import 'package:travel_app_master/screens/auth/models/login_model.dart';
 import 'package:travel_app_master/screens/auth/models/register_model.dart';
 import 'package:travel_app_master/screens/navigation.dart';
 
@@ -37,6 +38,7 @@ class AuthController extends GetxController {
   var longitude = 0.0.obs;
 
   RegisterModel userDetails = RegisterModel();
+  LoginModel loginDetails = LoginModel();
 
   @override
   void onInit() {
@@ -158,28 +160,24 @@ class AuthController extends GetxController {
       var uri = Uri.parse(AppUrl.login);
 
       Map<String, String> data = {
-        // "question": questionController.text,
-
-        // "country_code": onlyCode,
-        // "phone": onlyNumber,
-        // "password": passController.text,
-        // "uid": conPassController.text,
+        "email": emailController.text,
+        "password": passwordController.text,
       };
 
-      //, headers: NetworkHelper().getPostHeaders()
       final response = await http.post(uri, body: data, headers: {
         "Accept": "application/json",
         "Content-Type": "application/x-www-form-urlencoded"
       });
       var value = json.decode(response.body.toString());
       if (response.statusCode == 200) {
-        // userDetails = Register.fromJson(value);
-        // networkHelper.setUserToken(userDetails.token, userDetails.data!.name);
-        // networkHelper.getUserToken();
+        loginDetails = LoginModel.fromJson(value);
+        networkHelper.setUserToken(
+            loginDetails.token, loginDetails.userImfo!.name);
+        networkHelper.getUserToken();
 
-        // changeLoading(false);
-        // Get.snackbar("Success", "Login Successful");
-        // Get.offAll(() => NavigationPage());
+        changeLoading(false);
+        Get.snackbar("Success", "Login Successful");
+        Get.offAll(() => const NavigationScreen());
       } else {
         changeLoading(false);
         Get.defaultDialog(
