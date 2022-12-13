@@ -1,6 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:http/http.dart' as http;
+import 'package:travel_app_master/core/network_helper/app_url.dart';
+import 'package:travel_app_master/screens/restaurant%20_details/model/campaigns_model.dart';
+
+
+import 'package:travel_app_master/screens/restaurant%20_details/model/campaings_controller.dart';
+
 
 class OfferScreen extends StatefulWidget {
   const OfferScreen({Key? key}) : super(key: key);
@@ -10,17 +17,14 @@ class OfferScreen extends StatefulWidget {
 }
 
 class _OfferScreenState extends State<OfferScreen> {
-  List<String> image = [
-    "assets/16taka.png",
-    "assets/surprise_gift.png",
-    "assets/valentines.png",
-  ];
-  List<String> title = [
-    "16 Taka Ticket",
-    "Surprise Gift",
-    "Valentines Special",
-  ];
 
+  //final String apiCamUrl = "https://ddapp.xomartbd.com/api/campaigns";
+
+  bool isLoading = false;
+
+  CampaignsModel? campaignsModel;
+
+ CampaingnsContraller camContraller =Get.put(CampaingnsContraller());
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -159,13 +163,15 @@ class _OfferScreenState extends State<OfferScreen> {
                     ],
                   ),
                 ),
-                SizedBox(height: 10.h),
-                ListView.separated(
-                   shrinkWrap: true,
+
+                Obx(() => camContraller.isLoading.value
+                    ? const Center(child: CircularProgressIndicator())
+                    :  ListView.separated(
+                  shrinkWrap: true,
                   physics: NeverScrollableScrollPhysics(),
-                  itemCount: 8,
+                  itemCount: 4,
                   itemBuilder: (BuildContext, index) {
-                    return Column(
+                    return  Column(
                       children: [
                         Container(
                           height: 131.h,
@@ -192,12 +198,12 @@ class _OfferScreenState extends State<OfferScreen> {
                                 child: Container(
                                   child: Column(
                                     crossAxisAlignment:
-                                        CrossAxisAlignment.start,
+                                    CrossAxisAlignment.start,
                                     mainAxisAlignment:
-                                        MainAxisAlignment.spaceAround,
+                                    MainAxisAlignment.spaceAround,
                                     children: [
-                                      Text(
-                                       "20 Offer for today",
+                                      Text("hi",
+                                        // "${campaings[index].data!.ongoingCampaigns![index].title}",
                                         style: TextStyle(
                                             fontSize: 18.sp,
                                             fontWeight: FontWeight.w500,
@@ -235,7 +241,30 @@ class _OfferScreenState extends State<OfferScreen> {
                   separatorBuilder: (BuildContext, index) {
                     return SizedBox(height: 20);
                   },
-                ),
+                )),
+
+
+
+            // FutureBuilder<List>(
+            //   future: getCampaignData(),
+            //   builder: (context, snapshot) {
+            //     if (snapshot.hasData) {
+            //       List<CampaignsModel> users = snapshot.data as List<CampaignsModel>;
+            //       return
+            //     }
+            //     if (snapshot.hasError) {
+            //       print(snapshot.error.toString());
+            //       return Text('error');
+            //     }
+            //     return CircularProgressIndicator();
+            //   },
+            // ),
+
+
+
+                SizedBox(height: 10.h),
+
+
                 SizedBox(
                   height: 10,
                 ),
@@ -266,4 +295,21 @@ class _OfferScreenState extends State<OfferScreen> {
       ),
     );
   }
+
+  // Future<List<CampaignsModel>> getCampaignData() async{
+  //   final response =await http.get(Uri.parse(apiCamUrl));
+  //
+  //   var data= jsonDecode(response.body.toString());
+  //   if(response.statusCode==200){
+  //     for(Map<String, dynamic> index in data){
+  //       campaings.add(CampaignsModel.fromJson(index));
+  //     }
+  //     return campaings;
+  //   } else{
+  //     return campaings;
+  //   }
+  //
+  // }
+
+
 }
