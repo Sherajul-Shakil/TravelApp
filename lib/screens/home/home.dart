@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:provider/provider.dart';
-import 'package:travel_app_master/screens/Search/searchhotel.dart';
+import 'package:get/get.dart';
+import 'package:travel_app_master/core/network_helper/network_helper.dart';
+import 'package:travel_app_master/screens/auth/controller/auth_controller.dart';
+import 'package:travel_app_master/screens/home/home_controller.dart';
 
 import '../../utilites/route.dart';
 import '../Search/search.dart';
 import '../restaurant _details/offer/offer_page.dart';
-import '../restaurant _details/restaurant_page.dart';
 import '../restaurant _details/hoteldetails.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -18,7 +19,8 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  TextEditingController searchController = TextEditingController();
+  // TextEditingController searchController = TextEditingController();
+  NetworkHelper networkHelper = Get.put(NetworkHelper());
   bool onPressed = false;
 
   List<String> sImage = [
@@ -30,236 +32,232 @@ class _HomeScreenState extends State<HomeScreen> {
 
   bool loading = false;
 
-  // Future loaddata() async {
-  //   // final provider = Provider.of<Hotelprovider>(context, listen: false);
-  //   // await provider.getcategory();
-  //   await provider.getofferbanner();
-  //   await provider.gethotels();
-  //   await provider.getprofile();
-  //   await provider.getrestorent();
-  //   setState(() {
-  //     loading = false;
-  //   });
-  // }
-
-  int selectcategory = 0;
-
-  // @override
-  // void initState() {
-  //   loaddata();
-  //   super.initState();
-  // }
-
   @override
   Widget build(BuildContext context) {
-    // final provider = Provider.of<Hotelprovider>(context);
     return SafeArea(
-      child: Scaffold(
-          backgroundColor: Color(0xffF7F7F7),
-          body: loading
-              ? Center(
-                  child: CircularProgressIndicator(),
-                )
-              : SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Container(
-                        margin: EdgeInsets.symmetric(horizontal: 24.w),
-                        child: Row(
-                          children: [
-                            Container(
-                              height: 48.h,
-                              width: 48.w,
-                              child: CircleAvatar(
-                                backgroundImage: NetworkImage(
-                                    "https://www.w3schools.com/howto/img_avatar.png"),
-                                radius: 25,
+        child: GetBuilder<HomeController>(
+            init: HomeController(),
+            builder: (homeController) {
+              return Scaffold(
+                  backgroundColor: const Color(0xffF7F7F7),
+                  body: homeController.isLoading == true
+                      ? const Center(
+                          child: CircularProgressIndicator(),
+                        )
+                      : SingleChildScrollView(
+                          child: Column(
+                            children: [
+                              const SizedBox(
+                                height: 10,
                               ),
-                            ),
-                            SizedBox(
-                              width: 10,
-                            ),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  "Hi, pk",
-                                  style: TextStyle(
-                                      fontSize: 18.sp,
-                                      fontWeight: FontWeight.w500),
-                                ),
-                                Row(
-                                  children: [
-                                    Icon(
-                                      Icons.location_on,
-                                      color: Colors.grey,
-                                      size: 15,
-                                    ),
-                                    Text(
-                                      "city!",
-                                      style: TextStyle(
-                                          color: Colors.grey,
-                                          fontSize: 13.sp,
-                                          fontWeight: FontWeight.w400),
-                                    ),
-                                  ],
-                                )
-                              ],
-                            ),
-                            Spacer(),
-                            Container(
-                              width: 38.w,
-                              height: 38.h,
-                              decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(13.r)),
-                              child: Image.asset(
-                                "assets/youtube_with.png",
-                                color: Colors.grey,
-                              ),
-                            ),
-                            SizedBox(
-                              width: 10,
-                            ),
-                            Container(
-                                width: 38.w,
-                                height: 38.h,
-                                decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    borderRadius: BorderRadius.circular(13.r)),
-                                child: Icon(Icons.notifications_outlined)),
-                          ],
-                        ),
-                      ),
-                      SizedBox(
-                        height: 20.h,
-                      ),
-                      Container(
-                        margin: EdgeInsets.symmetric(horizontal: 24.w),
-                        child: Row(
-                          children: [
-                            Expanded(
-                              child: Container(
-                                width: 290.w,
-                                height: 48.h,
-                                child: TextFormField(
-                                  controller: searchController,
-                                  decoration: InputDecoration(
-                                    isDense: true,
-                                    contentPadding: EdgeInsets.all(10.r),
-                                    filled: true,
-                                    fillColor: Colors.white,
-                                    suffixIcon: InkWell(
-                                      onTap: () {
-                                        String value =
-                                            searchController.text.toString();
-
-                                        Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                              builder: (context) =>
-                                                  SearchScreen(
-                                                selectedcategory: 1,
-                                                searchItem: value,
-                                              ),
-                                            ));
-                                      },
-                                      child: Icon(
-                                        Icons.arrow_forward,
-                                        color: Color(0xff08BA64),
-                                        size: 20,
-                                      ),
-                                    ),
-                                    labelStyle: TextStyle(
-                                      color: Colors.white,
-                                    ),
-                                    hintText: "Where do you wanna go?",
-                                    hintStyle: TextStyle(
-                                      color: Colors.grey,
-                                    ),
-                                    border: OutlineInputBorder(
-                                      borderSide: BorderSide.none,
-                                      borderRadius: BorderRadius.circular(16),
-                                    ),
-                                    disabledBorder: InputBorder.none,
-                                    focusedBorder: OutlineInputBorder(
-                                      borderSide: BorderSide.none,
-                                      borderRadius: BorderRadius.circular(16),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                            SizedBox(
-                              width: 20.w,
-                            ),
-                            InkWell(
-                              onTap: () {},
-                              child: Container(
-                                width: 64.w,
-                                height: 48.h,
-                                decoration: BoxDecoration(
-                                    color: Color(0xff08BA64),
-                                    borderRadius: BorderRadius.circular(10)),
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
+                              Container(
+                                margin: EdgeInsets.symmetric(horizontal: 24.w),
+                                child: Row(
                                   children: [
                                     Container(
-                                        width: 20.w,
-                                        height: 17.h,
-                                        child: Image.asset(
-                                            "assets/emergency.png")),
-                                    Text(
-                                      "Emergency",
-                                      style: TextStyle(
+                                      height: 48.h,
+                                      width: 48.w,
+                                      child: const CircleAvatar(
+                                        backgroundImage: NetworkImage(
+                                            "https://www.w3schools.com/howto/img_avatar.png"),
+                                        radius: 25,
+                                      ),
+                                    ),
+                                    const SizedBox(
+                                      width: 10,
+                                    ),
+                                    Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          "Hi, pk",
+                                          style: TextStyle(
+                                              fontSize: 18.sp,
+                                              fontWeight: FontWeight.w500),
+                                        ),
+                                        Row(
+                                          children: [
+                                            const Icon(
+                                              Icons.location_on,
+                                              color: Colors.grey,
+                                              size: 15,
+                                            ),
+                                            Text(
+                                              "city!",
+                                              style: TextStyle(
+                                                  color: Colors.grey,
+                                                  fontSize: 13.sp,
+                                                  fontWeight: FontWeight.w400),
+                                            ),
+                                          ],
+                                        )
+                                      ],
+                                    ),
+                                    const Spacer(),
+                                    Container(
+                                      width: 38.w,
+                                      height: 38.h,
+                                      decoration: BoxDecoration(
                                           color: Colors.white,
-                                          fontSize: 8.sp,
-                                          fontWeight: FontWeight.w400),
-                                    )
+                                          borderRadius:
+                                              BorderRadius.circular(13.r)),
+                                      child: Image.asset(
+                                        "assets/youtube_with.png",
+                                        color: Colors.grey,
+                                      ),
+                                    ),
+                                    const SizedBox(
+                                      width: 10,
+                                    ),
+                                    InkWell(
+                                      onTap: () => networkHelper.logout(),
+                                      child: Container(
+                                          width: 38.w,
+                                          height: 38.h,
+                                          decoration: BoxDecoration(
+                                              color: Colors.white,
+                                              borderRadius:
+                                                  BorderRadius.circular(13.r)),
+                                          child: const Icon(
+                                              Icons.notifications_outlined)),
+                                    ),
                                   ],
                                 ),
                               ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      SizedBox(
-                        height: 20.h,
-                      ),
-                      category(),
-                      SizedBox(
-                        height: 20.h,
-                      ),
-                      slider(),
-                      if (selectcategory == 0) hotels(),
-                      if (selectcategory == 1) restorent(),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      arroundworld(),
-                    ],
-                  ),
-                )),
-    );
+                              SizedBox(
+                                height: 20.h,
+                              ),
+                              Container(
+                                margin: EdgeInsets.symmetric(horizontal: 24.w),
+                                child: Row(
+                                  children: [
+                                    Expanded(
+                                      child: Container(
+                                        width: 290.w,
+                                        height: 48.h,
+                                        child: TextFormField(
+                                          controller:
+                                              homeController.searchController,
+                                          decoration: InputDecoration(
+                                            isDense: true,
+                                            contentPadding:
+                                                EdgeInsets.all(10.r),
+                                            filled: true,
+                                            fillColor: Colors.white,
+                                            suffixIcon: InkWell(
+                                              onTap: () {
+                                                Get.to(
+                                                    () => const SearchScreen());
+                                                // Navigator.push(
+                                                //     context,
+                                                //     MaterialPageRoute(
+                                                //       builder: (context) =>
+                                                //           SearchScreen(
+                                                //         selectedcategory: 1,
+                                                //         searchItem: value,
+                                                //       ),
+                                                //     ));
+                                              },
+                                              child: const Icon(
+                                                Icons.arrow_forward,
+                                                color: Color(0xff08BA64),
+                                                size: 20,
+                                              ),
+                                            ),
+                                            labelStyle: const TextStyle(
+                                              color: Colors.white,
+                                            ),
+                                            hintText: "Where do you wanna go?",
+                                            hintStyle: const TextStyle(
+                                              color: Colors.grey,
+                                            ),
+                                            border: OutlineInputBorder(
+                                              borderSide: BorderSide.none,
+                                              borderRadius:
+                                                  BorderRadius.circular(16),
+                                            ),
+                                            disabledBorder: InputBorder.none,
+                                            focusedBorder: OutlineInputBorder(
+                                              borderSide: BorderSide.none,
+                                              borderRadius:
+                                                  BorderRadius.circular(16),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      width: 20.w,
+                                    ),
+                                    InkWell(
+                                      onTap: () {},
+                                      child: Container(
+                                        width: 64.w,
+                                        height: 48.h,
+                                        decoration: BoxDecoration(
+                                            color: const Color(0xff08BA64),
+                                            borderRadius:
+                                                BorderRadius.circular(10)),
+                                        child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            Container(
+                                                width: 20.w,
+                                                height: 17.h,
+                                                child: Image.asset(
+                                                    "assets/emergency.png")),
+                                            Text(
+                                              "Emergency",
+                                              style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontSize: 8.sp,
+                                                  fontWeight: FontWeight.w400),
+                                            )
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              SizedBox(
+                                height: 20.h,
+                              ),
+                              category(),
+                              SizedBox(
+                                height: 20.h,
+                              ),
+                              slider(),
+                              if (homeController.selectcategory == 0) hotels(),
+                              if (homeController.selectcategory == 1)
+                                restorent(),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              // arroundworld(),
+                            ],
+                          ),
+                        ));
+            }));
   }
 
   Widget category() {
-    // final provider = Provider.of<Hotelprovider>(context);
-    // final pageprovider = Provider.of<PagecontrollProvider>(context);
+    HomeController homeController = Get.find();
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: Container(
           height: 90,
           child: Row(
-             mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8),
-                child: InkWell(
-                  onTap: () {},
+              InkWell(
+                onTap: () {
+                  homeController.changeHotelRes(0);
+                },
+                child: Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 8),
                   child: Column(
                     children: [
                       Container(
@@ -267,14 +265,16 @@ class _HomeScreenState extends State<HomeScreen> {
                           height: 65.h,
                           width: 80.w,
                           decoration: BoxDecoration(
-                              color: Colors.white,
+                              color: homeController.selectcategory == 0
+                                  ? const Color(0xff08BA64).withOpacity(0.3)
+                                  : Colors.white,
                               borderRadius: BorderRadius.circular(16.r)),
                           child: Image.asset("assets/hotel.png")),
                       SizedBox(height: 5.h),
                       Text(
                         "Hotel/Resot",
                         style: TextStyle(
-                            color: Color(0xFf9C9C9C),
+                            color: const Color(0xFf9C9C9C),
                             fontSize: 13.sp,
                             fontWeight: FontWeight.w400),
                       )
@@ -285,7 +285,9 @@ class _HomeScreenState extends State<HomeScreen> {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8),
                 child: InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    homeController.changeHotelRes(1);
+                  },
                   child: Column(
                     children: [
                       Container(
@@ -293,14 +295,16 @@ class _HomeScreenState extends State<HomeScreen> {
                           height: 65.h,
                           width: 80.w,
                           decoration: BoxDecoration(
-                              color: Colors.white,
+                              color: homeController.selectcategory == 1
+                                  ? const Color(0xff08BA64).withOpacity(0.3)
+                                  : Colors.white,
                               borderRadius: BorderRadius.circular(16.r)),
                           child: Image.asset("assets/restaurant.png")),
                       SizedBox(height: 5.h),
                       Text(
                         "Restaurant",
                         style: TextStyle(
-                            color: Color(0xFf9C9C9C),
+                            color: const Color(0xFf9C9C9C),
                             fontSize: 13.sp,
                             fontWeight: FontWeight.w400),
                       )
@@ -326,7 +330,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       Text(
                         "Cruise",
                         style: TextStyle(
-                            color: Color(0xFf9C9C9C),
+                            color: const Color(0xFf9C9C9C),
                             fontSize: 13.sp,
                             fontWeight: FontWeight.w400),
                       )
@@ -352,7 +356,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       Text(
                         "Flight",
                         style: TextStyle(
-                            color: Color(0xFf9C9C9C),
+                            color: const Color(0xFf9C9C9C),
                             fontSize: 13.sp,
                             fontWeight: FontWeight.w400),
                       )
@@ -360,7 +364,6 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
               ),
-
             ],
           )),
     );
@@ -404,11 +407,11 @@ class _HomeScreenState extends State<HomeScreen> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => OfferScreen()));
+                                  builder: (context) => const OfferScreen()));
                         }
                       });
                     },
-                    child: Icon(
+                    child: const Icon(
                       Icons.arrow_forward,
                     )),
               ],
@@ -439,7 +442,7 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Widget hotels() {
-    // final provider = Provider.of<Hotelprovider>(context);
+    HomeController homeController = Get.put(HomeController());
     return Column(
       children: [
         Container(
@@ -470,7 +473,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               InkWell(
                   onTap: () {},
-                  child: Icon(
+                  child: const Icon(
                     Icons.arrow_forward,
                   )),
             ],
@@ -481,15 +484,15 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         ListView.builder(
             shrinkWrap: true,
-            physics: NeverScrollableScrollPhysics(),
-            itemCount: 4,
+            physics: const NeverScrollableScrollPhysics(),
+            itemCount: homeController.popularHotelList.length,
             itemBuilder: ((context, index) {
-              // var data = provider.hotels!.data[index];
+              var hotelData = homeController.popularHotelList[index];
               return Column(
                 children: [
                   InkWell(
                     onTap: () {
-                      newpage(HoteldetailsPage2(), context);
+                      newpage(const HoteldetailsPage2(), context);
                     },
                     child: Container(
                       height: 144.h,
@@ -511,7 +514,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     topLeft: Radius.circular(10.r),
                                     bottomLeft: Radius.circular(10.r)),
                                 child: Image.network(
-                                  "https://media-cdn.tripadvisor.com/media/photo-s/15/99/54/30/swimming-pool.jpg",
+                                  "${hotelData.image}",
                                   // data.hotelImages!,
                                   fit: BoxFit.cover,
                                 ),
@@ -524,7 +527,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Text(
-                                    "Hotel Name Here jsdhkj skdn dkjsd sdknsd ",
+                                    "${hotelData.name}",
                                     maxLines: 1,
                                     style: TextStyle(
                                         fontSize: 18.sp,
@@ -533,13 +536,18 @@ class _HomeScreenState extends State<HomeScreen> {
                                   SizedBox(height: 8.h),
                                   Row(
                                     children: [
-                                      Icon(Icons.location_on, size: 15),
-                                      Text(
-                                        "Cox’s Bazaar",
-                                        style: TextStyle(
+                                      const Icon(Icons.location_on, size: 15),
+                                      SizedBox(
+                                        width: Get.width * 0.3,
+                                        child: Text(
+                                          "${hotelData.location}",
+                                          style: TextStyle(
                                             fontSize: 13.sp,
                                             color: Colors.grey,
-                                            fontWeight: FontWeight.w400),
+                                            fontWeight: FontWeight.w400,
+                                            overflow: TextOverflow.ellipsis,
+                                          ),
+                                        ),
                                       ),
                                     ],
                                   ),
@@ -549,11 +557,11 @@ class _HomeScreenState extends State<HomeScreen> {
                                       Container(
                                         decoration: BoxDecoration(
                                           color: Colors.grey.shade200,
-                                          borderRadius: BorderRadius.all(
+                                          borderRadius: const BorderRadius.all(
                                               Radius.circular(20)),
                                         ),
-                                        child: Padding(
-                                          padding: const EdgeInsets.symmetric(
+                                        child: const Padding(
+                                          padding: EdgeInsets.symmetric(
                                               horizontal: 8),
                                           child: Text(
                                             "Hotel",
@@ -562,38 +570,39 @@ class _HomeScreenState extends State<HomeScreen> {
                                           ),
                                         ),
                                       ),
-                                      SizedBox(
+                                      const SizedBox(
                                         width: 5,
                                       ),
-                                      Container(
-                                        decoration: BoxDecoration(
-                                          color: Colors.grey.shade200,
-                                          borderRadius: BorderRadius.all(
-                                              Radius.circular(20)),
-                                        ),
-                                        child: Padding(
-                                          padding: const EdgeInsets.symmetric(
-                                              horizontal: 8),
-                                          child: Text(
-                                            "Restaurant",
-                                            style: TextStyle(
-                                                color: Colors.black54),
-                                          ),
-                                        ),
-                                      )
+                                      // Container(
+                                      //   decoration: BoxDecoration(
+                                      //     color: Colors.grey.shade200,
+                                      //     borderRadius: const BorderRadius.all(
+                                      //         Radius.circular(20)),
+                                      //   ),
+                                      //   child: const Padding(
+                                      //     padding: EdgeInsets.symmetric(
+                                      //         horizontal: 8),
+                                      //     child: Text(
+                                      //       "Restaurant",
+                                      //       style: TextStyle(
+                                      //           color: Colors.black54),
+                                      //     ),
+                                      //   ),
+                                      // )
                                     ],
                                   ),
                                   SizedBox(height: 10.h),
                                   RatingBar.builder(
                                     itemSize: 16.r,
-                                    initialRating: 3,
+                                    initialRating:
+                                        double.parse("${hotelData.rating}"),
                                     minRating: 1,
                                     direction: Axis.horizontal,
                                     allowHalfRating: true,
                                     itemCount: 5,
-                                    itemPadding:
-                                        EdgeInsets.symmetric(horizontal: 1.0),
-                                    itemBuilder: (context, _) => Icon(
+                                    itemPadding: const EdgeInsets.symmetric(
+                                        horizontal: 1.0),
+                                    itemBuilder: (context, _) => const Icon(
                                         Icons.star,
                                         size: 5,
                                         color: Colors.orangeAccent),
@@ -602,7 +611,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     },
                                   ),
                                   Text(
-                                    "10 review",
+                                    "${hotelData.totalRating}",
                                     style: TextStyle(
                                         fontSize: 11.sp,
                                         fontWeight: FontWeight.w300),
@@ -629,7 +638,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                         top: 10.h,
                                         right: 0.w,
                                         child: Text(
-                                          "30%",
+                                          "${hotelData.discount ?? 0}%",
                                           style: TextStyle(
                                             fontSize: 13.sp,
                                             fontWeight: FontWeight.w700,
@@ -655,20 +664,20 @@ class _HomeScreenState extends State<HomeScreen> {
                                       ),
                                     ),
                                     Text(
-                                      "600" + " tk",
+                                      "${hotelData.offerPrice ?? 0} tk",
                                       style: TextStyle(
                                           fontSize: 15.sp,
                                           fontWeight: FontWeight.w700,
-                                          color: Color(0xff08BA64)),
+                                          color: const Color(0xff08BA64)),
                                     ),
                                     Text(
-                                      "200" + " tk",
+                                      "${hotelData.price ?? 0} tk",
                                       style: TextStyle(
                                           fontSize: 11.sp,
                                           fontWeight: FontWeight.w300,
                                           decoration:
                                               TextDecoration.lineThrough,
-                                          color: Color(0xff08BA64)),
+                                          color: const Color(0xff08BA64)),
                                     ),
                                   ],
                                 )
@@ -687,14 +696,13 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Widget restorent() {
-    // final provider = Provider.of<Hotelprovider>(context);
+    HomeController homeController = Get.find();
     return ListView.builder(
         shrinkWrap: true,
-        physics: NeverScrollableScrollPhysics(),
-        itemCount: 5,
-        // provider.restorent!.data!.length,
+        physics: const NeverScrollableScrollPhysics(),
+        itemCount: homeController.popularRestaurentList.length,
         itemBuilder: ((context, index) {
-          // var data = provider.restorent!.data![index];
+          var restData = homeController.popularRestaurentList[index];
           return InkWell(
             onTap: () {
               // newpage(RestaurantScreen(data: data), context);
@@ -715,7 +723,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       height: 144.h,
                       width: 105.w,
                       child: Image.network(
-                        "data.restaurantImages!",
+                        "${restData.image}",
                         fit: BoxFit.cover,
                       )),
                   SizedBox(width: 10.w),
@@ -725,16 +733,16 @@ class _HomeScreenState extends State<HomeScreen> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          "data.restaurantName!",
+                          "${restData.name}",
                           style: TextStyle(
                               fontSize: 18.sp, fontWeight: FontWeight.w500),
                         ),
                         SizedBox(height: 8.h),
                         Row(
                           children: [
-                            Icon(Icons.location_on, size: 15),
+                            const Icon(Icons.location_on, size: 15),
                             Text(
-                              "Cox’s Bazaar",
+                              "${restData.location}",
                               style: TextStyle(
                                   fontSize: 13.sp,
                                   color: Colors.grey,
@@ -743,31 +751,34 @@ class _HomeScreenState extends State<HomeScreen> {
                           ],
                         ),
                         SizedBox(height: 8.h),
-                        Text("data.restaurantTags!"),
+                        Text(
+                          "Resturent",
+                        ),
                         SizedBox(height: 20.h),
                         RatingBar.builder(
                           itemSize: 20.r,
-                          initialRating: 3,
+                          initialRating: double.parse("${restData.rating}"),
                           minRating: 1,
                           direction: Axis.horizontal,
                           allowHalfRating: true,
                           itemCount: 5,
-                          itemPadding: EdgeInsets.symmetric(horizontal: 1.0),
-                          itemBuilder: (context, _) => Icon(Icons.star,
+                          itemPadding:
+                              const EdgeInsets.symmetric(horizontal: 1.0),
+                          itemBuilder: (context, _) => const Icon(Icons.star,
                               size: 5, color: Colors.orangeAccent),
                           onRatingUpdate: (rating) {
                             print(rating);
                           },
                         ),
                         Text(
-                          "${0} review",
+                          "${restData.totalRating}",
                           style: TextStyle(
                               fontSize: 11.sp, fontWeight: FontWeight.w200),
                         )
                       ],
                     ),
                   ),
-                  Spacer(),
+                  const Spacer(),
                   Container(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.end,
@@ -786,7 +797,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 top: 10.h,
                                 right: 0.w,
                                 child: Text(
-                                  "restaurantDiscount%",
+                                  "${restData.discount}%",
                                   style: TextStyle(
                                     fontSize: 13.sp,
                                     fontWeight: FontWeight.w700,
@@ -812,19 +823,19 @@ class _HomeScreenState extends State<HomeScreen> {
                               ),
                             ),
                             Text(
-                              "${""} tk",
+                              "${restData.offerPrice ?? 0} tk",
                               style: TextStyle(
                                   fontSize: 15.sp,
                                   fontWeight: FontWeight.w700,
-                                  color: Color(0xff08BA64)),
+                                  color: const Color(0xff08BA64)),
                             ),
                             Text(
-                              "${""} tk",
+                              "${restData.price ?? 0} tk",
                               style: TextStyle(
                                   fontSize: 11.sp,
                                   fontWeight: FontWeight.w300,
                                   decoration: TextDecoration.lineThrough,
-                                  color: Color(0xff08BA64)),
+                                  color: const Color(0xff08BA64)),
                             ),
                           ],
                         )
@@ -849,14 +860,14 @@ class _HomeScreenState extends State<HomeScreen> {
                 "Around The World",
                 style: TextStyle(fontSize: 20.sp, fontWeight: FontWeight.w500),
               ),
-              Spacer(),
-              Icon(Icons.arrow_forward),
+              const Spacer(),
+              const Icon(Icons.arrow_forward),
             ],
           ),
         ),
         ListView.builder(
             shrinkWrap: true,
-            physics: NeverScrollableScrollPhysics(),
+            physics: const NeverScrollableScrollPhysics(),
             itemCount: 4,
             itemBuilder: ((context, index) {
               return Column(
@@ -867,7 +878,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     margin: EdgeInsets.only(bottom: 15.h),
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10.r),
-                        image: DecorationImage(
+                        image: const DecorationImage(
                             fit: BoxFit.cover,
                             image: NetworkImage(
                               "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",

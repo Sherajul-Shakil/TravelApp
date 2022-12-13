@@ -13,7 +13,7 @@ class AppUrl {
   static const String varifyOtp = "${baseUrl}forgot-password/verify-otp";
 
   //Home api
-  static const String homeSlider = "${baseUrl}slider/list";
+  static const String hotel = "${baseUrl}home_api";
   static const String categoryList = "${baseUrl}category/list";
   static const String categoryWithProduct = "${baseUrl}category-product/list";
   static const String productDetails = "${baseUrl}product/details/";
