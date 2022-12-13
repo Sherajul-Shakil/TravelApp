@@ -169,10 +169,10 @@ class AuthController extends GetxController {
         "Content-Type": "application/x-www-form-urlencoded"
       });
       var value = json.decode(response.body.toString());
+      print("data $data ${response.body}");
       if (response.statusCode == 200) {
         loginDetails = LoginModel.fromJson(value);
-        networkHelper.setUserToken(
-            loginDetails.token, loginDetails.userImfo!.name);
+        networkHelper.setUserToken(loginDetails.token, loginDetails.data!.name);
         networkHelper.getUserToken();
 
         changeLoading(false);

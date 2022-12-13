@@ -11,39 +11,39 @@ String loginModelToJson(LoginModel data) => json.encode(data.toJson());
 
 class LoginModel {
   LoginModel({
-    this.status,
-    this.message,
+    this.success,
     this.token,
-    this.userImfo,
+    this.data,
+    this.message,
   });
 
-  bool? status;
-  String? message;
+  bool? success;
   String? token;
-  UserImfo? userImfo;
+  Data? data;
+  String? message;
 
   factory LoginModel.fromJson(Map<String, dynamic> json) => LoginModel(
-        status: json["status"],
-        message: json["message"],
+        success: json["success"],
         token: json["token"],
-        userImfo: UserImfo.fromJson(json["user_imfo"]),
+        data: Data.fromJson(json["data"]),
+        message: json["message"],
       );
 
   Map<String, dynamic> toJson() => {
-        "status": status,
-        "message": message,
+        "success": success,
         "token": token,
-        "user_imfo": userImfo!.toJson(),
+        "data": data!.toJson(),
+        "message": message,
       };
 
   @override
   String toString() {
-    return 'LoginModel{status: $status, message: $message, token: $token, userImfo: $userImfo}';
+    return 'LoginModel{success: $success, token: $token, data: $data, message: $message}';
   }
 }
 
-class UserImfo {
-  UserImfo({
+class Data {
+  Data({
     this.id,
     this.name,
     this.email,
@@ -55,6 +55,7 @@ class UserImfo {
     this.prefer,
     this.profilePic,
     this.affiliateId,
+    this.status,
   });
 
   int? id;
@@ -64,12 +65,13 @@ class UserImfo {
   String? gender;
   String? birthDate;
   String? city;
-  dynamic location;
+  String? location;
   String? prefer;
   String? profilePic;
   String? affiliateId;
+  String? status;
 
-  factory UserImfo.fromJson(Map<String, dynamic> json) => UserImfo(
+  factory Data.fromJson(Map<String, dynamic> json) => Data(
         id: json["id"],
         name: json["name"],
         email: json["email"],
@@ -81,6 +83,7 @@ class UserImfo {
         prefer: json["prefer"],
         profilePic: json["profile_pic"],
         affiliateId: json["affiliate_id"],
+        status: json["status"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -95,10 +98,11 @@ class UserImfo {
         "prefer": prefer,
         "profile_pic": profilePic,
         "affiliate_id": affiliateId,
+        "status": status,
       };
 
   @override
   String toString() {
-    return 'UserImfo{id: $id, name: $name, email: $email, mobileNumber: $mobileNumber  }';
+    return 'Data{id: $id, name: $name, email: $email, mobileNumber: $mobileNumber }';
   }
 }

@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:travel_app_master/screens/restaurant%20_details/offer/offer_page.dart';
 import 'package:travel_app_master/screens/user_about/person.dart';
 import 'package:travel_app_master/screens/world/world_page.dart';
-
 import 'Search/search.dart';
-import 'explore/explore_page.dart';
 import 'home/home.dart';
 
 class NavigationScreen extends StatefulWidget {
@@ -25,48 +22,23 @@ class _NavigationScreenState extends State<NavigationScreen> {
   PageController pageController = PageController();
 
   int selectedIndex = 0;
-  // List<Widget> screens = [
-  //   HomeScreen(),
-  //   SearchScreen(),
-  //   OfferScreen(),
-  //   // ProfileScreen(),
-  //   PersonScreen()
-  // ];
-
-  // Future currentlocationget() async {
-  //   final _locationprovider =
-  //       Provider.of<Locationprovider>(context, listen: false);
-  //   await _locationprovider.locationenablecheck();
-  //   await _locationprovider.getcurrectlocation();
-  // }
-
-  // @override
-  // void initState() {
-  //   currentlocationget();
-  //   super.initState();
-  // }
 
   @override
   Widget build(BuildContext context) {
-    // final pageprovider = Provider.of<PagecontrollProvider>(context);
     return Scaffold(
       body: PageView(
         controller: pageController,
         children: [
           HomeScreen(),
-
-         SearchScreen(selectedcategory: 1),
-          OfferScreen(),
-          // ProfileScreen(),
-          WorldPage(),
+          const SearchScreen(),
+          const OfferScreen(),
+          const WorldPage(),
           PersonScreen()
         ],
       ),
       bottomNavigationBar: Container(
         child: BottomNavigationBar(
           items: [
-            // BottomNavigationBarItem(icon: Icon(Icons.home),label: "home"),
-            // BottomNavigationBarItem(icon: Icon(Icons.person),label: "person"),
             BottomNavigationBarItem(
               icon: Image.asset(
                 "assets/home.png",
@@ -87,7 +59,6 @@ class _NavigationScreenState extends State<NavigationScreen> {
               icon: Image.asset("assets/world_card.png"),
               label: "World",
             ),
-
             BottomNavigationBarItem(
               icon: Image.asset(
                 "assets/person.png",
@@ -96,7 +67,6 @@ class _NavigationScreenState extends State<NavigationScreen> {
               label: "Account",
             ),
           ],
-
           type: BottomNavigationBarType.fixed,
           currentIndex: selectedIndex,
           backgroundColor: Colors.white,
@@ -108,16 +78,6 @@ class _NavigationScreenState extends State<NavigationScreen> {
             });
             pageController.jumpToPage(index);
           },
-          // selectedIconTheme: IconThemeData(
-          //   color: Colors.redAccent
-          // ),
-
-          // onTap: (int index) {
-          //   setState(() {
-          //     selectedIndex = index;
-          //   });
-          //   // pageprovider.pageController.jumpToPage(index);
-          // },
         ),
       ),
     );
