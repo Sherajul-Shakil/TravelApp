@@ -87,4 +87,6 @@ class NetworkHelper extends GetxController {
     print(
         "User Token from shared preffffffffffffffffffffffffffff: ${userToken.value}");
   }
+
+
 }
